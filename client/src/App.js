@@ -1,11 +1,10 @@
 import React from "react";
+import MonthCalendar from "./components/MonthCalendar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Salam</p>
-      </header>
+      <MonthCalendar />
     </div>
   );
 }
