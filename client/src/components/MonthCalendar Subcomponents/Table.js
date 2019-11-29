@@ -8,7 +8,7 @@ export default function Table(props) {
       <WeekDayNames className={`${props.className}-header`} weekStartsOn="1" />
       <WeekRows
         className={`${props.className}-weeks`}
-        month={new Date(2019, 10)}
+        month={props.month}
         weekStartsOn="1"
       />
     </div>
