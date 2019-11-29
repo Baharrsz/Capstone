@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { debounce } from "../helper/helper";
 
 import Picker from "./MonthCalendar Subcomponents/Picker";
 import Table from "./MonthCalendar Subcomponents/Table";
