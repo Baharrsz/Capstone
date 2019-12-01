@@ -9,6 +9,7 @@ import {
   addDays,
   isSameMonth
 } from "date-fns";
+import { Link } from "react-router-dom";
 import uuid from "uuid";
 
 export default function WeekRows(props) {
@@ -25,20 +26,27 @@ export default function WeekRows(props) {
     let row = [];
     for (let i = 1; i <= 7; i++) {
       row.push(
-        <div
+        <Link
+          // to={`${format(day, "y/MMM/d")}`}
+          to="day"
           className={`${props.className}-week-day ${
             isSameMonth(day, props.month) ? "enabled" : "disabled"
           }`}
           key={uuid()}
         >
           {format(day, "E MMM d")}
-        </div>
+        </Link>
       );
       day = addDays(day, 1);
     }
     row = (
       <div className={`${props.className}-week`} key={uuid()}>
-        <button className={`${props.className}-week-btn`}>Select Week</button>
+        <Link
+          to={`/${format(day, "y")}/week/${format(day, "I")}`}
+          className={`${props.className}-week-btn`}
+        >
+          Select Week
+        </Link>
         {row}
       </div>
     );

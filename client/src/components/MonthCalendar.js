@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import Picker from "./MonthCalendar Subcomponents/Picker";
 import Table from "./MonthCalendar Subcomponents/Table";
@@ -12,7 +13,11 @@ export default class MonthCalendar extends Component {
   render() {
     return (
       <div className="month">
-        <button className="month__btn">PLAN IT!</button>
+        <button className="month__btn planBtn">
+          <Link to="/month-plan" className="month__planLink planLink">
+            Plan it!
+          </Link>
+        </button>
         <Table
           className="month__table"
           month={new Date(this.state.yearToShow, this.state.monthToShow)}
