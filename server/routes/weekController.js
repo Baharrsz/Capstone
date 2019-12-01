@@ -1,16 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const weeks = require("../models").Week;
+const days = require("../models").Day;
 
 console.log(weeks);
 
 router.get("/", (req, res) => {
-  console.log(req);
-  res.send(`weekController: ${req.originalUrl}`);
+  weeks
+    .findOne({
+      where: { id: req.originalUrl.slice(1) },
+      include: [
+        {
+          model: days,
+          as: "Days"
+        }
+      ]
+    })
+    .then(week => res.json(week));
 });
 
 router.post("/", (req, res) => {
-  const year = req.originalUrl.split("/")[1];
+  const year = Number(req.originalUrl.split("/")[1]);
 
   weeks
     .findOrCreate({
@@ -20,7 +30,7 @@ router.post("/", (req, res) => {
     })
     .then(([week, whetherCreated]) => {
       week.update({
-        yearId: year,
+        YearId: year,
         events: req.body.events,
         goals: req.body.goals,
         schedule: req.body.schedule
