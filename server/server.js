@@ -4,7 +4,6 @@ const cors = require("cors");
 app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 app.use("/:year", require("./routes/yearController"));
 app.use("/:year/week/:week", require("./routes/weekController"));
