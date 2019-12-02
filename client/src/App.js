@@ -12,10 +12,10 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/" exact component={MonthCalendar} />
-        <Route path="/month-plan" component={MonthPlanning} />
-        <Route path="/:year/week/:week" component={WeekCalendar} />
-        <Route path="/week-plan" component={WeekPlanning} />
-        <Route path="/day" component={DayPlanning} />
+        <Route path="/:year/:month/plan" exact component={MonthPlanning} />
+        <Route path="/:year/week/:week" exact component={WeekCalendar} />
+        <Route path="/:year/week/:week/plan" component={WeekPlanning} />
+        <Route path="/:year/:month/:day" component={DayPlanning} />
       </Switch>
     </div>
   );

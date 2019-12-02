@@ -11,14 +11,15 @@ export default class WeekCalendar extends Component {
       this.props.match.params.year,
       this.props.match.params.week
     ];
-    console.log(
-      parse(`${weekToShow[0]}/${weekToShow[1]}/0`, "w/YYYY/d", new Date())
-    );
+
     return (
       <div>
         <Link to="day">Day</Link>
         <button className="weekcal__btn planBtn">
-          <Link to="/week-plan" className="week__planLink planLink">
+          <Link
+            to={`/${weekToShow[0]}/week/${weekToShow[1]}/plan`}
+            className="week__planLink planLink"
+          >
             Plan it!
           </Link>
         </button>
