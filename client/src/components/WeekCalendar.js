@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { format, startOfWeek, addDays, parse } from "date-fns";
+import AllDaysInWeek from "./WeekCalendar Subcomponents/AllDaysInWeek";
 
 export default class WeekCalendar extends Component {
   constructor(props) {
@@ -23,10 +24,8 @@ export default class WeekCalendar extends Component {
             Plan it!
           </Link>
         </button>
-        <h1>{weekToShow}</h1>
-        <div className="weekcal__day">
-          <h2 className="weekcal__day-title">Day {}</h2>
-        </div>
+        <h1>{`Week ${weekToShow[1]} of ${weekToShow[0]}`}</h1>
+        <AllDaysInWeek className="week__days" weekToShow={weekToShow} />
         <button>Prev</button>
         <button>Next</button>
       </div>
