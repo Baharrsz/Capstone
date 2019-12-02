@@ -3,8 +3,6 @@ const router = express.Router();
 const weeks = require("../models").Week;
 const days = require("../models").Day;
 
-console.log(weeks);
-
 router.get("/", (req, res) => {
   weeks
     .findOne({
