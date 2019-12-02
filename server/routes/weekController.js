@@ -3,16 +3,13 @@ const router = express.Router();
 const weeks = require("../models").Week;
 const days = require("../models").Day;
 
+const weekId = req.originalUrl.slice(1);
+
 router.get("/", (req, res) => {
   weeks
     .findOne({
-      where: { id: req.originalUrl.slice(1) },
-      include: [
-        {
-          model: days,
-          as: "Days"
-        }
-      ]
+      where: { id: weekId },
+      include: [{ model: days, as: "Days" }]
     })
     .then(week => res.json(week));
 });
@@ -23,7 +20,7 @@ router.post("/", (req, res) => {
   weeks
     .findOrCreate({
       where: {
-        id: req.originalUrl.slice(1)
+        id: weekId
       }
     })
     .then(([week, whetherCreated]) => {
@@ -38,9 +35,7 @@ router.post("/", (req, res) => {
 });
 
 router.delete("/", (req, res) => {
-  weeks
-    .destroy({ where: { id: req.originalUrl.slice(1) } })
-    .then(d => res.json(d));
+  weeks.destroy({ where: { id: weekId } }).then(d => res.json(d));
 });
 
 module.exports = router;

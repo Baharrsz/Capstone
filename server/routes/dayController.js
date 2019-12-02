@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-// const weeks = require("../models").Week;
-const days = require("../models").Day;
 const format = require("date-fns/format");
 const parse = require("date-fns/parse");
+const days = require("../models").Day;
 
 router.get("/", (req, res) => {
   days
@@ -18,8 +17,6 @@ router.post("/", (req, res) => {
   const year = format(date, "y");
   const month = format(date, "M");
   const week = format(date, "I");
-
-  console.log(date);
 
   days
     .findOrCreate({
