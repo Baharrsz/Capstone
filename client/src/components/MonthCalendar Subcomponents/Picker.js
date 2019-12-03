@@ -13,8 +13,8 @@ export default function Picker(props) {
   return (
     <div className={props.className}>
       <Select
-        className={props.className}
-        classNamePrefix={props.className}
+        className={`${props.className}-month`}
+        classNamePrefix={`${props.className}-month`}
         options={options}
         onChange={props.pickMonth}
       />

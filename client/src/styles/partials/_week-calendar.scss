@@ -1,0 +1,9 @@
+.weekcal {
+  &__days {
+    display: flex;
+  }
+  &__day {
+    border: 1px solid $black;
+    margin: 10px;
+  }
+}

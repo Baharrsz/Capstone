@@ -1,0 +1,28 @@
+.monthcal {
+  &__header {
+  }
+  &__table {
+    &-header {
+      display: flex;
+    }
+    &-weeks {
+    }
+    &-week {
+      &-day {
+        margin: 5px;
+      }
+    }
+  }
+
+  &__picker {
+    display: flex;
+    &-month {
+      width: 45%;
+      margin-right: 10%;
+    }
+    &-year {
+      width: 45%;
+      border: 1px solid $black;
+    }
+  }
+}

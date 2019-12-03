@@ -10,6 +10,9 @@ client/coverage
 
 # production
 client/build
+client/src/styles/main.css
+client/src/styles/main.css.map
+
 
 # misc
 .DS_Store

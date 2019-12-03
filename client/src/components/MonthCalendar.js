@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
 import Picker from "./MonthCalendar Subcomponents/Picker";
-import Table from "./MonthCalendar Subcomponents/Table";
+import MonthTable from "./MonthCalendar Subcomponents/MonthTable";
 
 var delayed;
 export default class MonthCalendar extends Component {
@@ -14,33 +14,38 @@ export default class MonthCalendar extends Component {
   render() {
     const dateToShow = new Date(this.state.yearToShow, this.state.monthToShow);
     return (
-      <div className="month">
-        <button className="month__btn planBtn">
+      <div className="monthcal">
+        <button className="monthcal__btn planBtn">
           <Link
             to={`${this.state.yearToShow}/${this.state.monthToShow}/plan`}
-            className="month__planLink planLink"
+            className="monthcal__planLink planLink"
           >
             Plan it!
           </Link>
         </button>
-        <button
-          className="month__btn jumpBtn"
-          value={-1}
-          onClick={this.jumpToMonth}
-        >
-          ◀
-        </button>
-        <h1 className="month__title">{format(dateToShow, "MMMM y")}</h1>
-        <button
-          className="month__btn jumpBtn"
-          value={1}
-          onClick={this.jumpToMonth}
-        >
-          ▶
-        </button>
-        <Table className="month__table" month={dateToShow} />
+        <section className="monthcal__header calendar__header">
+          <button
+            className="monthcal__header-btn jumpBtn"
+            value={-1}
+            onClick={this.jumpToMonth}
+          >
+            ◀
+          </button>
+          <h1 className="monthcal__header-title">
+            {format(dateToShow, "MMMM y")}
+          </h1>
+          <button
+            className="monthcal__header-btn jumpBtn"
+            value={1}
+            onClick={this.jumpToMonth}
+          >
+            ▶
+          </button>
+        </section>
+
+        <MonthTable className="monthcal__table" month={dateToShow} />
         <Picker
-          className="month__picker"
+          className="monthcal__picker"
           pickMonth={this.pickMonth}
           pickYear={this.pickYear}
         />

@@ -7,6 +7,7 @@ import {
   endOfMonth,
   isBefore,
   addDays,
+  subDays,
   isSameMonth
 } from "date-fns";
 import { Link } from "react-router-dom";
@@ -41,7 +42,13 @@ export default function WeekRows(props) {
     row = (
       <div className={`${props.className}-week`} key={uuid()}>
         <Link
-          to={`/${format(day, "y")}/week/${format(day, "I")}`}
+          to={`/${format(subDays(day, 1), "y")}/week/${format(
+            subDays(day, 1),
+            "w",
+            {
+              weekStartsOn: props.weekStartsOn
+            }
+          )}`}
           className={`${props.className}-week-btn`}
         >
           Select Week
@@ -51,5 +58,5 @@ export default function WeekRows(props) {
     );
     rows.push(row);
   }
-  return <div className={`${props.className}`}>{rows}</div>;
+  return <div className={`${props.className}-weeks`}>{rows}</div>;
 }
