@@ -19,7 +19,7 @@ export default class DayInWeek extends Component {
       { weekStartsOn: this.props.weekStartsOn }
     );
     return (
-      <Link to={`${format(dateToShow, "y/M/d")}`} className="weekcal__day">
+      <Link to={`/${format(dateToShow, "y/M/d")}`} className="weekcal__day">
         <h2 className="weekcal__day-title">
           {format(dateToShow, "EEEE MMM do")}
         </h2>
