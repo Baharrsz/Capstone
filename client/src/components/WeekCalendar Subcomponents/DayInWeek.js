@@ -32,9 +32,18 @@ export default class DayInWeek extends Component {
           {format(this.dateToShow, "EEEE MMM do")}
         </h2>
 
-        <ViewEvents className="weekcal__day-section weekcal__day-events" />
-        <ViewGoals className="weekcal__day-section weekcal__day-goals" />
-        <ViewSchedule className="weekcal__day-section weekcal__day-schedule" />
+        <ViewEvents
+          className="weekcal__day-section weekcal__day-events"
+          events={this.state.events}
+        />
+        <ViewGoals
+          className="weekcal__day-section weekcal__day-goals"
+          goals={this.state.goals}
+        />
+        <ViewSchedule
+          className="weekcal__day-section weekcal__day-schedule"
+          schedule={this.state.schedule}
+        />
       </Link>
     );
   }
@@ -49,7 +58,7 @@ export default class DayInWeek extends Component {
         }
       });
 
-      this.setState({ ...newState }, () => console.log(this.state));
+      this.setState({ ...newState });
     });
   }
 }
