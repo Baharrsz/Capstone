@@ -3,9 +3,8 @@ const router = express.Router();
 const weeks = require("../models").Week;
 const days = require("../models").Day;
 
-const weekId = req.originalUrl.slice(1);
-
 router.get("/", (req, res) => {
+  const weekId = req.originalUrl.slice(1);
   weeks
     .findOne({
       where: { id: weekId },

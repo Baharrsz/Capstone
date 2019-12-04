@@ -1,0 +1,28 @@
+.planning {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "title title title"
+    "events goals schedule ";
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__events {
+    grid-area: events;
+  }
+
+  &__goals {
+    grid-area: goals;
+  }
+
+  &__schedule {
+    grid-area: schedule;
+  }
+
+  &__section {
+    border: 1px solid $black;
+  }
+}

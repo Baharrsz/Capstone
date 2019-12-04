@@ -3,9 +3,8 @@ const router = express.Router();
 const months = require("../models").Month;
 const days = require("../models").Day;
 
-const monthId = req.originalUrl.slice(1);
-
 router.get("/", (req, res) => {
+  const monthId = req.originalUrl.slice(1);
   months
     .findOne({
       where: { id: monthId },

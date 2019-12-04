@@ -1,33 +1,55 @@
 import React, { Component } from "react";
 import { parse, format } from "date-fns";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-import Events from "../Shared Subcomponents/Events";
-import Goals from "../Shared Subcomponents/Goals";
-import Schedule from "../Shared Subcomponents/Schedule";
+import ViewEvents from "./ViewEvents";
+import ViewGoals from "./ViewGoals";
+import ViewSchedule from "./ViewSchedule";
 
 export default class DayInWeek extends Component {
   constructor(props) {
     super(props);
-  }
-  render() {
     const [year, week, day] = this.props.dayToShow;
-    const dateToShow = parse(
+    this.dateToShow = parse(
       `${year}/${week}/${String(day + 1)}`,
       "Y/w/e",
       new Date(),
       { weekStartsOn: this.props.weekStartsOn }
     );
+    this.dateLink = format(this.dateToShow, "y/M/d");
+  }
+  state = {
+    events: undefined,
+    goals: undefined,
+    schedule: undefined
+  };
+
+  render() {
     return (
-      <Link to={`/${format(dateToShow, "y/M/d")}`} className="weekcal__day">
+      <Link to={`/${this.dateLink}`} className="weekcal__day">
         <h2 className="weekcal__day-title">
-          {format(dateToShow, "EEEE MMM do")}
+          {format(this.dateToShow, "EEEE MMM do")}
         </h2>
 
-        <Events className="weekcal__day-section weekcal__day-events" />
-        <Goals className="weekcal__day-section weekcal__day-goals" />
-        <Schedule className="weekcal__day-section weekcal__day-schedule" />
+        <ViewEvents className="weekcal__day-section weekcal__day-events" />
+        <ViewGoals className="weekcal__day-section weekcal__day-goals" />
+        <ViewSchedule className="weekcal__day-section weekcal__day-schedule" />
       </Link>
     );
+  }
+
+  componentDidMount() {
+    const url = `http://localhost:5000/${this.dateLink}`;
+    axios.get(url).then(response => {
+      let newState = {};
+      Object.keys(this.state).forEach(key => {
+        if (response.data && response.data[key]) {
+          newState[key] = response.data[key];
+        }
+      });
+
+      this.setState({ ...newState }, () => console.log(this.state));
+    });
   }
 }

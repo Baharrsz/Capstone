@@ -8,9 +8,9 @@ import WeekPlanning from "./components/WeekPlanning";
 import DayPlanning from "./components/DayPlanning";
 import PlanningPage from "./components/Shared Subcomponents/PlanningPage";
 
-import Events from "./components/Shared Subcomponents/Events";
-import Goals from "./components/Shared Subcomponents/Goals";
-import Schedule from "./components/Shared Subcomponents/Schedule";
+import Events from "./components/WeekCalendar Subcomponents/ViewEvents";
+import Goals from "./components/WeekCalendar Subcomponents/ViewGoals";
+import Schedule from "./components/WeekCalendar Subcomponents/ViewSchedule";
 import PlanningTitle from "./components/Shared Subcomponents/PlanningTitle";
 
 function App() {
