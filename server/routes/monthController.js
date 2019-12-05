@@ -2,19 +2,24 @@ const express = require("express");
 const router = express.Router();
 const months = require("../models").Month;
 const days = require("../models").Day;
+const years = require("../models").Year;
 
 router.get("/", (req, res) => {
   const monthId = req.originalUrl.slice(1);
   months
     .findOne({
       where: { id: monthId },
-      include: [{ model: days, as: "Days" }]
+      include: [
+        { model: days, as: "Days" },
+        { model: years, as: "Year" }
+      ]
     })
     .then(month => res.json(month));
 });
 
 router.post("/", (req, res) => {
   const year = Number(req.originalUrl.split("/")[1]);
+  const monthId = req.originalUrl.slice(1);
 
   months
     .findOrCreate({

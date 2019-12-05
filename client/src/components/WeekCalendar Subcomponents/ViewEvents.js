@@ -22,28 +22,7 @@ export default function ViewEvents({ className, events }) {
   return (
     <section className="weekcal__day-section weekcal__day-events">
       <h3 className="weekcal__day-section-title">Events</h3>
-      <div className="weekcal__day-section-body">
-        {eventsElements}
-        {/* <div className="weekcal__day-feature">
-          <label className="weekcal__day-feature-label">Event</label>
-          <div className="weekcal__day-feature-value"></div>
-        </div>
-
-        <div className="weekcal__day-feature">
-          <label className="weekcal__day-feature-label">Starts at</label>
-          <div className="weekcal__day-feature-value"></div>
-        </div>
-
-        <div className="weekcal__day-feature">
-          <label className="weekcal__day-feature-label">Ends at</label>
-          <div className="weekcal__day-feature-value"></div>
-        </div>
-
-        <div className="weekcal__day-feature">
-          <label className="weekcal__day-feature-label">Location</label>
-          <div className="weekcal__day-feature-value"></div>
-        </div> */}
-      </div>
+      <div className="weekcal__day-section-body">{eventsElements}</div>
     </section>
   );
 }

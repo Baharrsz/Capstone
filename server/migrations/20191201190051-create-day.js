@@ -27,12 +27,26 @@ module.exports = {
       },
       yearId: {
         type: Sequelize.INTEGER
+        //When I uncomment these lines, I cannot write into the fields of the days (other than id, updatedAt, and createdAt). It gives me some error about constraints and foreign keys.
+        //I don't know why. I should read about it later.
+        // references: {
+        //   model: "Years",
+        //   key: "id"
+        // }
       },
       monthId: {
         type: Sequelize.STRING
+        // references: {
+        //   model: "Months",
+        //   key: "id"
+        // }
       },
       weekId: {
         type: Sequelize.STRING
+        // references: {
+        //   model: "Weeks",
+        //   key: "id"
+        // }
       }
     });
   },

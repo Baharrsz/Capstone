@@ -25,8 +25,19 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      YearId: {
+      yearId: {
         type: Sequelize.INTEGER
+        // references: {
+        //   model: "Years",
+        //   key: "id"
+        // }
+      },
+      monthId: {
+        type: Sequelize.STRING
+        // references: {
+        //   model: "Months",
+        //   key: "id"
+        // }
       }
     });
   },

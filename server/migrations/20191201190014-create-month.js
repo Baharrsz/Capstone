@@ -27,6 +27,10 @@ module.exports = {
       },
       yearId: {
         type: Sequelize.INTEGER
+        // references: {
+        //   model: "Years",
+        //   key: "id"
+        // }
       }
     });
   },
