@@ -1,7 +1,7 @@
 import React from "react";
 import uuid from "uuid";
 
-export default function ShowDescendantEvents({ descendants }) {
+export default function DescendantEvents({ descendants }) {
   //Creating html for showing descendant events
   const descendantsEvents = Object.keys(descendants).map(
     descendantArrayName => {
@@ -47,5 +47,9 @@ export default function ShowDescendantEvents({ descendants }) {
     }
   );
 
-  return descendantsEvents;
+  return (
+    <div className="planning-events-descendants planning-section-descendants">
+      {descendantsEvents}
+    </div>
+  );
 }

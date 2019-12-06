@@ -1,7 +1,7 @@
 import React from "react";
 import uuid from "uuid";
 
-export default function ShowAncestorEvents({ ancestors }) {
+export default function AncestorEvents({ ancestors }) {
   const ancestorsEvents = Object.keys(ancestors).map(ancestor => {
     if (ancestors[ancestor]) {
       const events = Object.values(ancestors[ancestor].events);
@@ -28,5 +28,9 @@ export default function ShowAncestorEvents({ ancestors }) {
       );
     }
   });
-  return ancestorsEvents;
+  return (
+    <div className="planning-events-ancestors planning-section-ancestors">
+      {ancestorsEvents}
+    </div>
+  );
 }
