@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const months = require("../models").Month;
 const days = require("../models").Day;
+const weeks = require("../models").Week;
 const years = require("../models").Year;
 
 router.get("/", (req, res) => {
@@ -11,6 +12,7 @@ router.get("/", (req, res) => {
       where: { id: monthId },
       include: [
         { model: days, as: "Days" },
+        { model: weeks, as: "Weeks" },
         { model: years, as: "Year" }
       ]
     })

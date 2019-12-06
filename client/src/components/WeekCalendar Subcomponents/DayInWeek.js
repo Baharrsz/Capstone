@@ -27,7 +27,7 @@ export default class DayInWeek extends Component {
 
   render() {
     return (
-      <Link to={`/${this.dateLink}`} className="weekcal__day">
+      <Link to={`/${this.dateLink}/plan`} className="weekcal__day">
         <h2 className="weekcal__day-title">
           {format(this.dateToShow, "EEEE MMM do")}
         </h2>

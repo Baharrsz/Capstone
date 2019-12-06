@@ -23,12 +23,13 @@ function App() {
           exact
           render={props => (
             <PlanningPage
-              title={
-                <PlanningTitle
-                  className="planning__title"
-                  params={props.match.params}
-                />
-              }
+              // title={
+              //   <PlanningTitle
+              //     className="planning__title"
+              //     params={props.match.params}
+              //   />
+              // }
+              match={props.match}
               events={<Events className="planning__section planning__events" />}
               goals={<Goals className="planning__section planning__goals" />}
               schedule={
@@ -42,12 +43,13 @@ function App() {
           path="/:year/week/:week/plan"
           render={props => (
             <PlanningPage
-              title={
-                <PlanningTitle
-                  className="planning__title"
-                  params={props.match.params}
-                />
-              }
+              // title={
+              //   <PlanningTitle
+              //     className="planning__title"
+              //     params={props.match.params}
+              //   />
+              // }
+              match={props.match}
               events={<Events className="planning__section planning__events" />}
               goals={<Goals className="planning__section planning__goals" />}
               schedule={
@@ -57,15 +59,16 @@ function App() {
           )}
         />
         <Route
-          path="/:year/:month/:day"
+          path="/:year/:month/:day/plan"
           render={props => (
             <PlanningPage
-              title={
-                <PlanningTitle
-                  className="planning__title"
-                  params={props.match.params}
-                />
-              }
+              // title={
+              //   <PlanningTitle
+              //     className="planning__title"
+              //     params={props.match.params}
+              //   />
+              // }
+              match={props.match}
               events={<Events className="planning__section planning__events" />}
               goals={<Goals className="planning__section planning__goals" />}
               schedule={

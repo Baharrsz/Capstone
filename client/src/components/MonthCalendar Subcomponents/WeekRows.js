@@ -28,7 +28,7 @@ export default function WeekRows(props) {
     for (let i = 1; i <= 7; i++) {
       row.push(
         <Link
-          to={`${format(day, "y/M/d")}`}
+          to={`${format(day, "y/M/d")}/plan`}
           className={`${props.className}-week-day ${
             isSameMonth(day, props.month) ? "enabled" : "disabled"
           }`}
