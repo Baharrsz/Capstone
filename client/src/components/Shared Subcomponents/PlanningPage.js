@@ -29,10 +29,12 @@ export default class PlanningPage extends Component {
   }
 
   componentDidMount() {
-    //Cutting "/paln" from the end of the url
+    //Cutting "/plan" from the end of the url
     let url = this.props.match.url.slice(0, -5);
     url = `http://localhost:5000${url}`;
     axios.get(url).then(response => {
+      if (response.data) {
+      }
       const {
         Days,
         Week,
@@ -43,7 +45,7 @@ export default class PlanningPage extends Component {
         events,
         goals,
         schedule
-      } = response.data;
+      } = response.data || {};
       const main = { events, goals, schedule };
       const ancestors = { Year, Month, Week };
       const descendants = { Months, Weeks, Days };
