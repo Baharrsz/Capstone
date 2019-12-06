@@ -49,9 +49,6 @@ export default class PlanningPage extends Component {
       const main = { events, goals, schedule };
       const ancestors = { Year, Month, Week };
       const descendants = { Months, Weeks, Days };
-      // console.log("ancestors", ancestors);
-      // console.log("descendents", descendents);
-      // console.log("main", main);
       this.setState({ main, ancestors, descendants });
     });
   }
