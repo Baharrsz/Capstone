@@ -14,7 +14,7 @@ export default class PlanningPage extends Component {
     return !this.state.main ? (
       <>Loading...</>
     ) : (
-      <form className="planning">
+      <div className="planning">
         <PlanningTitle
           className="planning__title"
           params={this.props.match.params}
@@ -24,7 +24,7 @@ export default class PlanningPage extends Component {
         <EditEvents savedPlans={this.state} />
         {this.props.goals}
         {this.props.schedule}
-      </form>
+      </div>
     );
   }
 
