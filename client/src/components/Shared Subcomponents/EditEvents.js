@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import ShowAncestors from "./ShowAncestors";
-import ShowDescendants from "./ShowDescendants";
+import ShowAncestorEvents from "./ShowAncestorEvents";
+import ShowDescendantEvents from "./ShowDescendantEvents";
 
 export default class EditEvents extends Component {
   constructor(props) {
@@ -13,10 +13,10 @@ export default class EditEvents extends Component {
       <div className="planning__events">
         <h3 className="planning__section-title">Events</h3>
         <div className="planning-events-ancestors planning-section-ancestors">
-          <ShowAncestors ancestors={ancestors} />
+          <ShowAncestorEvents ancestors={ancestors} />
         </div>
         <div className="planning-events-descendants planning-section-descendants">
-          <ShowDescendants descendants={descendants} />
+          <ShowDescendantEvents descendants={descendants} />
         </div>
       </div>
     );

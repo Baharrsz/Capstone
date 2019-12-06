@@ -1,7 +1,7 @@
 import React from "react";
 import uuid from "uuid";
 
-export default function ShowDescendants({ descendants }) {
+export default function ShowDescendantEvents({ descendants }) {
   //Creating html for showing descendant events
   const descendantsEvents = Object.keys(descendants).map(
     descendantArrayName => {

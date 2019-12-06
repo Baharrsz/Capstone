@@ -1,7 +1,7 @@
 import React from "react";
 import uuid from "uuid";
 
-export default function ShowAncestors({ ancestors }) {
+export default function ShowAncestorEvents({ ancestors }) {
   const ancestorsEvents = Object.keys(ancestors).map(ancestor => {
     if (ancestors[ancestor]) {
       const events = Object.values(ancestors[ancestor].events);
