@@ -14,37 +14,41 @@ export default class MainEvents extends Component {
     const eventsList = eventsKeys.map(key => {
       const event = this.props.mainEvents[key];
       return (
-        <form
-          className="planning__main-event"
-          key={uuid()}
-          id={key}
-          onSubmit={this.props.deleteEvents}
-        >
+        <form className="planning__main-event" key={uuid()} id={key}>
           <label className="planning__main-event-label">event</label>
           <input
             className="planning__main-event-value"
+            name="event"
             defaultValue={event.event}
           />
 
           <label className="planning__main-event-label">starts</label>
           <input
             className="planning__main-event-value"
+            name="starts"
             defaultValue={event.starts}
           />
 
           <label className="planning__main-event-label">ends</label>
           <input
             className="planning__main-event-value"
+            name="ends"
             defaultValue={event.ends}
           />
 
           <label className="planning__main-event-label">location</label>
           <input
             className="planning__main-event-value"
+            name="location"
             defaultValue={event.location}
           />
 
-          <button className="planning__main-event-btn planning__main-event-btn--delete">
+          <button
+            className="planning__main-event-btn planning__main-event-btn--delete planning__btn--delete"
+            type="button"
+            form={key}
+            onClick={this.props.deleteEvents}
+          >
             Delete
           </button>
         </form>
@@ -55,7 +59,7 @@ export default class MainEvents extends Component {
       <div className="planning__main--events planning__main">
         {eventsList}
         <form
-          className="planning__main-event"
+          className="planning__main-event planning__main-event--new"
           key={uuid()}
           onSubmit={this.props.addNewEvent}
         >
@@ -63,7 +67,7 @@ export default class MainEvents extends Component {
           <TimePicker
             className="planning__main-event-value"
             value={this.state.startTime}
-            name="startsAt"
+            name="starts"
             onChange={this.changeStart}
             required
           />
@@ -74,7 +78,7 @@ export default class MainEvents extends Component {
               className="planning__main-events-value"
               value={this.state.endTime}
               clockIcon={null}
-              name="endsAt"
+              name="ends"
               onChange={this.changeEnd}
               required
             />
@@ -90,7 +94,9 @@ export default class MainEvents extends Component {
             defaultValue=""
           />
 
-          <button className="planning__main-event-btn">Add</button>
+          <button className="planning__main-event-btn planning__btn--add">
+            Add
+          </button>
         </form>
       </div>
     );

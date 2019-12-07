@@ -13,6 +13,7 @@ import ShowDescendantGoals from "./ShowDescendantGoals";
 import MainEvents from "./MainEvents";
 import MainGoals from "./MainGoals";
 
+var delayed;
 export default class PlanningPage extends Component {
   constructor(props) {
     super(props);
@@ -122,17 +123,15 @@ export default class PlanningPage extends Component {
 
   //This will send the information that is displayed on the page to the server after clicking the "Save" button
   sendToDatabase = saveEvent => {
-    // saveEvent.preventDefault();
     axios.post(this.url, this.state.main);
   };
 
   //This will be called in MainEvents to delete events previosly added to the database
   deleteEvents = deleteEvent => {
-    deleteEvent.preventDefault();
     const eventsToKeep = {};
     const events = this.state.main.events;
     for (let key in events) {
-      if (key !== deleteEvent.target.id) eventsToKeep[key] = events[key];
+      if (key !== deleteEvent.target.form.id) eventsToKeep[key] = events[key];
     }
     this.setState({
       main: { ...this.state.main, events: eventsToKeep }
@@ -142,18 +141,61 @@ export default class PlanningPage extends Component {
   //This will be called in MainEvents to add new events
   addNewEvent = submit => {
     submit.preventDefault();
-    const eventId = `${submit.target.startsAt.value}-${uuid()}`;
+    const eventId = `${submit.target.starts.value}-${uuid()}`;
     let newEvent = {};
     newEvent[eventId] = {
       event: submit.target.event.value,
-      starts: submit.target.startsAt.value,
-      end: submit.target.endsAt.value,
+      starts: submit.target.starts.value,
+      ends: submit.target.ends.value,
       location: submit.target.location.value
     };
     this.setState({
       main: {
         ...this.state.main,
         events: { ...this.state.main.events, ...newEvent }
+      }
+    });
+  };
+
+  //I will write the functionality for editing main events after the demo day.
+  //Possible solutions: * Waiting for a while after user has typed (--> possible bug) *using forwardref *checking if a button can belong to multiple forms *onInput?
+
+  //This gets the inforamtion that is displaying in the main events section after the user changes something.
+  // getEditedEvent = change => {
+  //   let editedEvent;
+  //   editedEvent[change.target.id] = {
+  //     event: change.target.event.value,
+  //     starts: change.target.starts.value,
+  //     ends: change.target.ends.value,
+  //     location: change.target.location.value
+  //   };
+  //   let events = this.state.main.events;
+  //   events.
+
+  //   //Waiting for some time so that the user finishes editing the event
+  //   clearTimeout(delayed);
+  //   delayed = setTimeout(() => {
+  //     this.setState({ yearToShow: yearToShow });
+  //   }, 5000);
+  // };
+
+  //This will be called in MainGoals to add new goals
+  addNewGoal = submit => {
+    submit.preventDefault();
+    const goalId = uuid();
+    const goalOrder = `none-false-${goalId}`;
+    let newGoal = {};
+    newGoal[goalOrder] = {
+      id: goalId,
+      goal: submit.target.goal.value,
+      checked: "false",
+      focus: "notFocus"
+    };
+
+    this.setState({
+      main: {
+        ...this.state.main,
+        goals: { ...this.state.main.goals, ...newGoal }
       }
     });
   };
