@@ -11,6 +11,7 @@ import ShowAncestorGoals from "./ShowAncestorGoals";
 import ShowDescendants from "./ShowDescendants";
 import ShowDescendantGoals from "./ShowDescendantGoals";
 import MainEvents from "./MainEvents";
+import MainGoals from "./MainGoals";
 
 export default class PlanningPage extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ export default class PlanningPage extends Component {
           }
           mainController={
             <MainEvents
-              main={this.state.main}
+              mainEvents={this.state.main.events}
               deleteEvents={this.deleteEvents}
               addNewEvent={this.addNewEvent}
             />
@@ -75,6 +76,13 @@ export default class PlanningPage extends Component {
             <ShowAncestorGoals
               ancestors={this.state.ancestors}
               section="goals"
+            />
+          }
+          mainController={
+            <MainGoals
+              mainGoals={this.state.main.goals}
+              deleteGaols={this.deleteGoals}
+              addNewGoal={this.addNewGoal}
             />
           }
           descendantsController={

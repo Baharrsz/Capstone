@@ -49,9 +49,7 @@ export default function ShowDescendants({ descendants, section }) {
   );
 
   return (
-    <div
-      className={`planning-${section}-descendants planning-section-descendants`}
-    >
+    <div className={`planning__descendants--${section} planning__descendants`}>
       {descendantsElements}
     </div>
   );

@@ -10,9 +10,9 @@ export default class MainEvents extends Component {
   state = {};
   render() {
     //The list of events previously added to the database
-    const eventKeys = Object.keys(this.props.main.events);
-    const eventsList = eventKeys.map(key => {
-      const event = this.props.main.events[key];
+    const eventsKeys = Object.keys(this.props.mainEvents);
+    const eventsList = eventsKeys.map(key => {
+      const event = this.props.mainEvents[key];
       return (
         <form
           className="planning__main-event"
@@ -52,7 +52,7 @@ export default class MainEvents extends Component {
     });
 
     return (
-      <div className="planning__main-events">
+      <div className="planning__main--events planning__main">
         {eventsList}
         <form
           className="planning__main-event"

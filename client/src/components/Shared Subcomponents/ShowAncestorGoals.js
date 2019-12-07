@@ -4,15 +4,15 @@ import uuid from "uuid";
 export default function ShowAncestorGoals({ ancestors }) {
   const ancestorsElements = Object.keys(ancestors).map(ancestor => {
     if (ancestors[ancestor]) {
-      const ancestorItems = Object.values(ancestors[ancestor].goals);
+      const ancestorGoals = Object.values(ancestors[ancestor].goals);
       return (
         <div className="planning__transferred" key={uuid()}>
           <h4 className="planning__transferred-title">{`${ancestor} goals`}</h4>
           <div className="planning__transferred-list">
-            {ancestorItems.map(ancestorItem => {
+            {ancestorGoals.map(ancestorGoal => {
               return (
                 <div className="planning__transferred-list-item" key={uuid()}>
-                  {ancestorItem}
+                  {ancestorGoal.goal}
                 </div>
               );
             })}
@@ -22,7 +22,7 @@ export default function ShowAncestorGoals({ ancestors }) {
     }
   });
   return (
-    <div className="planning-goals-ancestors planning-section-ancestors">
+    <div className="planning__ancestors--goals planning__ancestors">
       {ancestorsElements}
     </div>
   );

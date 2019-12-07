@@ -30,7 +30,7 @@ export default function ShowAncestors({ ancestors, section }) {
     }
   });
   return (
-    <div className={`planning-${section}-ancestors planning-section-ancestors`}>
+    <div className={`planning__ancestors--${section} planning__ancestors`}>
       {ancestorsElements}
     </div>
   );

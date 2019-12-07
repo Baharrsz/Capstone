@@ -12,7 +12,7 @@ export default function ShowDescendantGoals({ descendants }) {
             <h4 className="planning__transferred-title">{`${descendantArrayName} goals`}</h4>
             <div className="planning__transferred__collection">
               {descendantArray.map(descendant => {
-                const goals = Object.values(descendant.goals);
+                const descendantGoals = Object.values(descendant.goals);
                 return (
                   <div
                     className="planning__transferred__collection-item"
@@ -22,10 +22,10 @@ export default function ShowDescendantGoals({ descendants }) {
                       {descendant.id}
                     </h5>
                     <div className="planning__transferred-list">
-                      {goals.map(goal => {
+                      {descendantGoals.map(descendantGoal => {
                         return (
                           <div className="planning__transferred-list-item-value">
-                            {goal}
+                            {descendantGoal.goal}
                           </div>
                         );
                       })}
@@ -41,7 +41,7 @@ export default function ShowDescendantGoals({ descendants }) {
   );
 
   return (
-    <div className="planning-goals-descendants planning-section-descendants">
+    <div className="planning__descendants--goals planning__descendants">
       {descendantsElements}
     </div>
   );
