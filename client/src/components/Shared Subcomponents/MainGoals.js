@@ -6,10 +6,12 @@ export default class MainGoals extends Component {
     super(props);
   }
   render() {
-    const goalsKeys = Object.keys(this.props.mainGoals);
-    const goalsList = goalsKeys.map(key => {
+    let focusedGoals = [];
+    let notFocusedGoals = [];
+
+    for (let key in this.props.mainGoals) {
       const goal = this.props.mainGoals[key];
-      return (
+      const goalHtml = (
         <form className="planning__main-goal" key={uuid()} id={goal.id}>
           <label className="planning__main-goal-label">
             <input
@@ -23,10 +25,10 @@ export default class MainGoals extends Component {
             className="planning__main-goal-btn planning__main-goal-btn--delete planning__btn--delete"
             type="button"
             form={goal.id}
-            value={goal.focus === "notFocus" ? "Focus" : "notFocus"}
+            value={goal.focus === "notFocus" ? "focus" : "notFocus"}
             onClick={this.props.changeFocus}
           >
-            {goal.focus === "notFocus" ? "Focus" : "Remove focus"}
+            {goal.focus === "notFocus" ? "focus" : "Remove focus"}
           </button>
           <button
             className="planning__main-goal-btn planning__main-goal-btn--delete planning__btn--delete"
@@ -38,10 +40,18 @@ export default class MainGoals extends Component {
           </button>
         </form>
       );
-    });
+      if (goal.focus === "focus") {
+        focusedGoals.push(goalHtml);
+      } else {
+        notFocusedGoals.push(goalHtml);
+      }
+    }
+
     return (
       <div className="planning__main planning__main--goals">
-        {goalsList}
+        <div className="planning__main-focused"> {focusedGoals}</div>
+        <div className="planning__main-notFocused"> {notFocusedGoals}</div>
+
         <form
           className="planning__main-goal planning__main-goal--new"
           onSubmit={this.props.addNewGoal}
