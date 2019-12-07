@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import ShowAncestors from "./ShowAncestors";
+import AncestorEvents from "./ShowAncestors";
 import DescendantEvents from "./ShowDescendants";
 import MainEvents from "./MainEvents";
 
-export default class EditEvents extends Component {
+export default class EditGoals extends Component {
   constructor(props) {
     super(props);
   }
@@ -11,9 +11,9 @@ export default class EditEvents extends Component {
     const { ancestors, descendants, main } = this.props.savedPlans;
 
     return (
-      <div className="planning__events planning__section">
-        <h3 className="planning__section-title">Events</h3>
-        <ShowAncestors ancestors={ancestors} />
+      <div className="planning__goals planning__section">
+        <h3 className="planning__section-title">Goals</h3>
+        <AncestorEvents ancestors={ancestors} />
         <MainEvents
           main={main}
           deleteEvents={this.props.deleteEvents}

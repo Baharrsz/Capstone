@@ -3,11 +3,14 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
-    "title title title"
+    "title title button"
     "events goals schedule ";
 
   &__title {
     grid-area: title;
+  }
+  &__btn {
+    grid-area: button;
   }
 
   &__events {
@@ -24,5 +27,6 @@
 
   &__section {
     border: 1px solid $black;
+    margin: 5px;
   }
 }

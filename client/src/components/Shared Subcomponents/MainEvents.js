@@ -7,46 +7,38 @@ export default class MainEvents extends Component {
   constructor(props) {
     super(props);
   }
-  state = {
-    events: {
-      "0900": {
-        event: "",
-        startsAt: "10:00",
-        endsAt: "11:00",
-        location: ""
-      }
-    }
-  };
+  state = {};
   render() {
     //The list of events previously added to the database
-    const events = Object.values(this.props.main.events);
-    const eventsList = events.map(event => {
+    const eventKeys = Object.keys(this.props.main.events);
+    const eventsList = eventKeys.map(key => {
+      const event = this.props.main.events[key];
       return (
         <form
           className="planning__main-event"
           key={uuid()}
-          id={event.id}
+          id={key}
           onSubmit={this.props.deleteEvents}
         >
-          <label className="planning__main-event-label">Event</label>
+          <label className="planning__main-event-label">event</label>
           <input
             className="planning__main-event-value"
             defaultValue={event.event}
           />
 
-          <label className="planning__main-event-label">Starts at</label>
+          <label className="planning__main-event-label">starts</label>
           <input
             className="planning__main-event-value"
-            defaultValue={event.startsAt}
+            defaultValue={event.starts}
           />
 
-          <label className="planning__main-event-label">Ends at</label>
+          <label className="planning__main-event-label">ends</label>
           <input
             className="planning__main-event-value"
-            defaultValue={event.endsAt}
+            defaultValue={event.ends}
           />
 
-          <label className="planning__main-event-label">Location</label>
+          <label className="planning__main-event-label">location</label>
           <input
             className="planning__main-event-value"
             defaultValue={event.location}
@@ -67,7 +59,7 @@ export default class MainEvents extends Component {
           key={uuid()}
           onSubmit={this.props.addNewEvent}
         >
-          <label className="planning__main-event-label">Starts at</label>
+          <label className="planning__main-event-label">starts</label>
           <TimePicker
             className="planning__main-event-value"
             value={this.state.startTime}
@@ -76,21 +68,22 @@ export default class MainEvents extends Component {
             required
           />
 
-          <label className="planning__main-event-label">Ends at</label>
+          <label className="planning__main-event-label">ends</label>
           <div className="planning__main-event-value">
             <TimePicker
               className="planning__main-events-value"
               value={this.state.endTime}
+              clockIcon={null}
               name="endsAt"
               onChange={this.changeEnd}
               required
             />
           </div>
 
-          <label className="planning__main-event-label">Event</label>
+          <label className="planning__main-event-label">event</label>
           <input className="planning__main-event-value" name="event" required />
 
-          <label className="planning__main-event-label">Location</label>
+          <label className="planning__main-event-label">location</label>
           <input
             className="planning__main-event-value"
             name="location"
@@ -106,19 +99,16 @@ export default class MainEvents extends Component {
   changeStart = startTime => {
     clearTimeout(delayed);
     delayed = setTimeout(() => {
-      const parts = startTime.split(":");
-      const endTime = `${Number(parts[0]) + 1}:${parts[1]}`;
-      this.setState({ startTime, endTime });
-    }, 1000);
+      //   const parts = startTime.split(":");
+      //   const endTime = `${Number(parts[0]) + 1}:${parts[1]}`;
+      this.setState({ startTime });
+    }, 500);
   };
 
   changeEnd = endTime => {
     clearTimeout(delayed);
     delayed = setTimeout(() => {
-      const parts = endTime.split(":");
-      let startTime = `${Number(parts[0]) - 1}:${parts[1]}`;
-      if (startTime.split(":")[0] === "-1") startTime = `11:${parts[1]}`;
-      this.setState({ startTime, endTime });
-    }, 1000);
+      this.setState({ endTime });
+    }, 500);
   };
 }

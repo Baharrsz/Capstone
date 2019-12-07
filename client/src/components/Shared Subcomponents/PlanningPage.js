@@ -4,6 +4,13 @@ import uuid from "uuid";
 
 import PlanningTitle from "./PlanningTitle";
 import EditEvents from "./EditEvents";
+import EditGoals from "./EditGoals";
+import PlanningSection from "./PlanningSection";
+import ShowAncestors from "./ShowAncestors";
+import ShowAncestorGoals from "./ShowAncestorGoals";
+import ShowDescendants from "./ShowDescendants";
+import ShowDescendantGoals from "./ShowDescendantGoals";
+import MainEvents from "./MainEvents";
 
 export default class PlanningPage extends Component {
   constructor(props) {
@@ -33,12 +40,50 @@ export default class PlanningPage extends Component {
           Save
         </button>
 
-        <EditEvents
+        {/* Edit Section */}
+        {/* <EditEvents
           savedPlans={this.state}
           deleteEvents={this.deleteEvents}
           addNewEvent={this.addNewEvent}
+        /> */}
+        <PlanningSection
+          sectionTitle="Events"
+          className="planning__events"
+          ancestorsController={
+            <ShowAncestors ancestors={this.state.ancestors} section="events" />
+          }
+          mainController={
+            <MainEvents
+              main={this.state.main}
+              deleteEvents={this.deleteEvents}
+              addNewEvent={this.addNewEvent}
+            />
+          }
+          descendantsController={
+            <ShowDescendants
+              descendants={this.state.descendants}
+              section="events"
+            />
+          }
         />
-        {this.props.goals}
+        {/* Goals section */}
+        {/* <EditGoals savedPlans={this.state} /> */}
+        <PlanningSection
+          sectionTitle="Goals"
+          className="planning__goals"
+          ancestorsController={
+            <ShowAncestorGoals
+              ancestors={this.state.ancestors}
+              section="goals"
+            />
+          }
+          descendantsController={
+            <ShowDescendantGoals
+              descendants={this.state.descendants}
+              section="goals"
+            />
+          }
+        />
         {this.props.schedule}
       </div>
     );
@@ -79,8 +124,7 @@ export default class PlanningPage extends Component {
     const eventsToKeep = {};
     const events = this.state.main.events;
     for (let key in events) {
-      if (events[key].id !== deleteEvent.target.id)
-        eventsToKeep[key] = events[key];
+      if (key !== deleteEvent.target.id) eventsToKeep[key] = events[key];
     }
     this.setState({
       main: { ...this.state.main, events: eventsToKeep }
@@ -93,10 +137,9 @@ export default class PlanningPage extends Component {
     const eventId = `${submit.target.startsAt.value}-${uuid()}`;
     let newEvent = {};
     newEvent[eventId] = {
-      id: eventId,
       event: submit.target.event.value,
-      startsAt: submit.target.startsAt.value,
-      endsAt: submit.target.endsAt.value,
+      starts: submit.target.startsAt.value,
+      end: submit.target.endsAt.value,
       location: submit.target.location.value
     };
     this.setState({
