@@ -84,6 +84,7 @@ export default class PlanningPage extends Component {
               mainGoals={this.state.main.goals}
               deleteGaols={this.deleteGoals}
               addNewGoal={this.addNewGoal}
+              changeFocus={this.changeFocus}
             />
           }
           descendantsController={
@@ -197,6 +198,19 @@ export default class PlanningPage extends Component {
         ...this.state.main,
         goals: { ...this.state.main.goals, ...newGoal }
       }
+    });
+  };
+
+  //This will be called in MainGoals to change whether a goal should be focused on
+  changeFocus = click => {
+    const goals = this.state.main.goals;
+
+    for (let key in goals) {
+      if (goals[key].id === click.target.form.id)
+        goals[key].focus = click.target.value;
+    }
+    this.setState({
+      main: { ...this.state.main, goals: goals }
     });
   };
 }

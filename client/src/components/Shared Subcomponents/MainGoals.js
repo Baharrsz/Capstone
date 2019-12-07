@@ -10,7 +10,7 @@ export default class MainGoals extends Component {
     const goalsList = goalsKeys.map(key => {
       const goal = this.props.mainGoals[key];
       return (
-        <form className="planning__main-goal" key={uuid()} id={key}>
+        <form className="planning__main-goal" key={uuid()} id={goal.id}>
           <label className="planning__main-goal-label">
             <input
               className="planning__main-goal-check"
@@ -22,15 +22,16 @@ export default class MainGoals extends Component {
           <button
             className="planning__main-goal-btn planning__main-goal-btn--delete planning__btn--delete"
             type="button"
-            form={key}
-            onClick={this.props.addFocus}
+            form={goal.id}
+            value={goal.focus === "notFocus" ? "Focus" : "notFocus"}
+            onClick={this.props.changeFocus}
           >
-            Focus
+            {goal.focus === "notFocus" ? "Focus" : "Remove focus"}
           </button>
           <button
             className="planning__main-goal-btn planning__main-goal-btn--delete planning__btn--delete"
             type="button"
-            form={key}
+            form={goal.id}
             onClick={this.props.deleteGoal}
           >
             Delete
