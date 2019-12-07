@@ -21,7 +21,7 @@ export default class PlanningPage extends Component {
         />
         <button className="planning__btn">Save</button>
 
-        <EditEvents savedPlans={this.state} />
+        <EditEvents savedPlans={this.state} deleteEvents={this.deleteEvents} />
         {this.props.goals}
         {this.props.schedule}
       </div>
@@ -52,4 +52,16 @@ export default class PlanningPage extends Component {
       this.setState({ main, ancestors, descendants });
     });
   }
+
+  //This will be called in MainEvents to delete events previosly added to the database
+  deleteEvents = deleteEvent => {
+    deleteEvent.preventDefault();
+    const eventsToKeep = {};
+    const events = this.state.main.events;
+    for (let key in events) {
+      if (events[key].id !== deleteEvent.target.id)
+        eventsToKeep[key] = events[key];
+    }
+    this.setState({ main: { ...this.state.main, events: eventsToKeep } });
+  };
 }

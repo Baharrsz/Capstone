@@ -18,23 +18,44 @@ export default class MainEvents extends Component {
     }
   };
   render() {
-    const events = Object.values(this.state.events);
-
+    //The list of events previously added to the database
+    const events = Object.values(this.props.main.events);
     const eventsList = events.map(event => {
       return (
-        <div className="planning__main-event" key={uuid()}>
+        <form
+          className="planning__main-event"
+          key={uuid()}
+          id={event.id}
+          onSubmit={this.props.deleteEvents}
+        >
           <label className="planning__main-event-label">Event</label>
-          <div className="planning__main-event-value">{event.event}</div>
+          <input
+            className="planning__main-event-value"
+            defaultValue={event.event}
+          />
 
           <label className="planning__main-event-label">Starts at</label>
-          <div className="planning__main-event-value">{event.startsAt}</div>
+          <input
+            className="planning__main-event-value"
+            defaultValue={event.startsAt}
+          />
 
           <label className="planning__main-event-label">Ends at</label>
-          <div className="planning__main-event-value">{event.endsAt}</div>
+          <input
+            className="planning__main-event-value"
+            defaultValue={event.endsAt}
+          />
 
           <label className="planning__main-event-label">Location</label>
-          <div className="planning__main-event-value">{event.location}</div>
-        </div>
+          <input
+            className="planning__main-event-value"
+            defaultValue={event.location}
+          />
+
+          <button className="planning__main-event-btn planning__main-event-btn--delete">
+            Delete
+          </button>
+        </form>
       );
     });
 

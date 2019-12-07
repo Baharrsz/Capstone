@@ -14,7 +14,7 @@ export default class EditEvents extends Component {
       <div className="planning__events">
         <h3 className="planning__section-title">Events</h3>
         <AncestorEvents ancestors={ancestors} />
-        <MainEvents main={main} />
+        <MainEvents main={main} deleteEvents={this.props.deleteEvents} />
         <DescendantEvents descendants={descendants} />
       </div>
     );
