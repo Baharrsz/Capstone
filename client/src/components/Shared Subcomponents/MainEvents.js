@@ -65,17 +65,15 @@ export default class MainEvents extends Component {
         <form
           className="planning__main-event"
           key={uuid()}
-          onSubmit={this.addNewEvent}
+          onSubmit={this.props.addNewEvent}
         >
-          <label className="planning__main-event-label">Event</label>
-          <input className="planning__main-event-value" required name="event" />
-
           <label className="planning__main-event-label">Starts at</label>
           <TimePicker
             className="planning__main-event-value"
             value={this.state.startTime}
-            name="startTime"
+            name="startsAt"
             onChange={this.changeStart}
+            required
           />
 
           <label className="planning__main-event-label">Ends at</label>
@@ -83,13 +81,21 @@ export default class MainEvents extends Component {
             <TimePicker
               className="planning__main-events-value"
               value={this.state.endTime}
-              name="endTime"
+              name="endsAt"
               onChange={this.changeEnd}
+              required
             />
           </div>
 
+          <label className="planning__main-event-label">Event</label>
+          <input className="planning__main-event-value" name="event" required />
+
           <label className="planning__main-event-label">Location</label>
-          <input className="planning__main-event-value" name="location" />
+          <input
+            className="planning__main-event-value"
+            name="location"
+            defaultValue=""
+          />
 
           <button className="planning__main-event-btn">Add</button>
         </form>
@@ -97,21 +103,13 @@ export default class MainEvents extends Component {
     );
   }
 
-  addNewEvent = submit => {
-    submit.preventDefault();
-    console.log("start", submit.target.startTime.value);
-    console.log("end", submit.target.endTime);
-  };
-
   changeStart = startTime => {
     clearTimeout(delayed);
     delayed = setTimeout(() => {
       const parts = startTime.split(":");
       const endTime = `${Number(parts[0]) + 1}:${parts[1]}`;
-      this.setState({ startTime, endTime }, () => {
-        console.log(this.state);
-      });
-    }, 1500);
+      this.setState({ startTime, endTime });
+    }, 1000);
   };
 
   changeEnd = endTime => {
@@ -120,9 +118,7 @@ export default class MainEvents extends Component {
       const parts = endTime.split(":");
       let startTime = `${Number(parts[0]) - 1}:${parts[1]}`;
       if (startTime.split(":")[0] === "-1") startTime = `11:${parts[1]}`;
-      this.setState({ startTime, endTime }, () => {
-        console.log(this.state);
-      });
-    }, 1500);
+      this.setState({ startTime, endTime });
+    }, 1000);
   };
 }
