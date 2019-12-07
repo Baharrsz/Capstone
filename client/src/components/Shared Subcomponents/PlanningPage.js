@@ -57,7 +57,7 @@ export default class PlanningPage extends Component {
           mainController={
             <MainEvents
               mainEvents={this.state.main.events}
-              deleteEvents={this.deleteEvents}
+              deleteEvent={this.deleteEvent}
               addNewEvent={this.addNewEvent}
             />
           }
@@ -82,7 +82,7 @@ export default class PlanningPage extends Component {
           mainController={
             <MainGoals
               mainGoals={this.state.main.goals}
-              deleteGaols={this.deleteGoals}
+              deleteGoal={this.deleteGoal}
               addNewGoal={this.addNewGoal}
               changeFocus={this.changeFocus}
             />
@@ -128,11 +128,11 @@ export default class PlanningPage extends Component {
   };
 
   //This will be called in MainEvents to delete events previosly added to the database
-  deleteEvents = deleteEvent => {
+  deleteEvent = clickDelete => {
     const eventsToKeep = {};
     const events = this.state.main.events;
     for (let key in events) {
-      if (key !== deleteEvent.target.form.id) eventsToKeep[key] = events[key];
+      if (key !== clickDelete.target.form.id) eventsToKeep[key] = events[key];
     }
     this.setState({
       main: { ...this.state.main, events: eventsToKeep }
@@ -140,15 +140,15 @@ export default class PlanningPage extends Component {
   };
 
   //This will be called in MainEvents to add new events
-  addNewEvent = submit => {
-    submit.preventDefault();
-    const eventId = `${submit.target.starts.value}-${uuid()}`;
+  addNewEvent = clickAdd => {
+    clickAdd.preventDefault();
+    const eventId = `${clickAdd.target.starts.value}-${uuid()}`;
     let newEvent = {};
     newEvent[eventId] = {
-      event: submit.target.event.value,
-      starts: submit.target.starts.value,
-      ends: submit.target.ends.value,
-      location: submit.target.location.value
+      event: clickAdd.target.event.value,
+      starts: clickAdd.target.starts.value,
+      ends: clickAdd.target.ends.value,
+      location: clickAdd.target.location.value
     };
     this.setState({
       main: {
@@ -180,15 +180,28 @@ export default class PlanningPage extends Component {
   //   }, 5000);
   // };
 
+  //This will be called in MainEvents to delete events previosly added to the database
+  deleteGoal = clickDelete => {
+    const goalsToKeep = {};
+    const goals = this.state.main.goals;
+    for (let key in goals) {
+      if (goals[key].id !== clickDelete.target.form.id)
+        goalsToKeep[key] = goals[key];
+    }
+    this.setState({
+      main: { ...this.state.main, goals: goalsToKeep }
+    });
+  };
+
   //This will be called in MainGoals to add new goals
-  addNewGoal = submit => {
-    submit.preventDefault();
+  addNewGoal = clickAdd => {
+    clickAdd.preventDefault();
     const goalId = uuid();
     const goalOrder = `none-false-${goalId}`;
     let newGoal = {};
     newGoal[goalOrder] = {
       id: goalId,
-      goal: submit.target.goal.value,
+      goal: clickAdd.target.goal.value,
       checked: "false",
       focus: "notFocus"
     };
@@ -202,12 +215,12 @@ export default class PlanningPage extends Component {
   };
 
   //This will be called in MainGoals to change whether a goal should be focused on
-  changeFocus = click => {
+  changeFocus = clickFocus => {
     const goals = this.state.main.goals;
 
     for (let key in goals) {
-      if (goals[key].id === click.target.form.id)
-        goals[key].focus = click.target.value;
+      if (goals[key].id === clickFocus.target.form.id)
+        goals[key].focus = clickFocus.target.value;
     }
     this.setState({
       main: { ...this.state.main, goals: goals }

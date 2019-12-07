@@ -47,7 +47,7 @@ export default class MainEvents extends Component {
             className="planning__main-event-btn planning__main-event-btn--delete planning__btn--delete"
             type="button"
             form={key}
-            onClick={this.props.deleteEvents}
+            onClick={this.props.deleteEvent}
           >
             Delete
           </button>

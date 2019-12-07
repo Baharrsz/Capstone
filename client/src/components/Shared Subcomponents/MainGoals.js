@@ -49,8 +49,10 @@ export default class MainGoals extends Component {
 
     return (
       <div className="planning__main planning__main--goals">
-        <div className="planning__main-focused"> {focusedGoals}</div>
-        <div className="planning__main-notFocused"> {notFocusedGoals}</div>
+        <div className="planning__main-goals">
+          <div className="planning__main-goals--focused"> {focusedGoals}</div>
+          {notFocusedGoals}
+        </div>
 
         <form
           className="planning__main-goal planning__main-goal--new"
