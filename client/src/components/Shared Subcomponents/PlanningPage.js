@@ -12,13 +12,16 @@ import ShowDescendants from "./ShowDescendants";
 import ShowDescendantGoals from "./ShowDescendantGoals";
 import MainEvents from "./MainEvents";
 import MainGoals from "./MainGoals";
+import MainSchedule from "./MainSchedule";
 
 var delayed;
 export default class PlanningPage extends Component {
   constructor(props) {
     super(props);
     this.url = `http://localhost:5000${this.props.match.url.slice(0, -5)}`;
+    this.MainSchedule = React.createRef();
   }
+
   state = {
     main: undefined,
     ancestors: undefined,
@@ -105,13 +108,14 @@ export default class PlanningPage extends Component {
               section="schedule"
             />
           }
-          // mainController={
-          //   <MainEvents
-          //     mainEvents={this.state.main.events}
-          //     deleteEvent={this.deleteEvent}
-          //     addNewEvent={this.addNewEvent}
-          //   />
-          // }
+          mainController={
+            <MainSchedule
+              ref={this.MainSchedule}
+              mainSchedule={this.state.main.schedule}
+              deleteScheduleItem={this.deleteScheduleItem}
+              addNewScheduleItem={this.addNewScheduleItem}
+            />
+          }
           descendantsController={
             <ShowDescendants
               descendants={this.state.descendants}
@@ -248,6 +252,38 @@ export default class PlanningPage extends Component {
     }
     this.setState({
       main: { ...this.state.main, goals: goals }
+    });
+  };
+
+  //This will be called in MainSchedule to add new schedule items
+  addNewScheduleItem = clickAdd => {
+    clickAdd.preventDefault();
+
+    const itemId = clickAdd.target.order.value;
+    let newItem = {};
+    newItem[itemId] = {
+      item: clickAdd.target.item.value,
+      starts: this.MainSchedule.current.state.start,
+      ends: this.MainSchedule.current.state.end,
+      duration: this.MainSchedule.current.state.duration
+    };
+    this.setState({
+      main: {
+        ...this.state.main,
+        schedule: { ...this.state.main.schedule, ...newItem }
+      }
+    });
+  };
+
+  //This will be called in MainEvents to delete events previosly added to the database
+  deleteScheduleItem = clickDelete => {
+    const itemsToKeep = {};
+    const items = this.state.main.schedule;
+    for (let key in items) {
+      if (key !== clickDelete.target.form.id) itemsToKeep[key] = items[key];
+    }
+    this.setState({
+      main: { ...this.state.main, schedule: itemsToKeep }
     });
   };
 }

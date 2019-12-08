@@ -60,7 +60,6 @@ export default class MainEvents extends Component {
         {eventsList}
         <form
           className="planning__main-event planning__main-event--new"
-          key={uuid()}
           onSubmit={this.props.addNewEvent}
         >
           <label className="planning__main-event-label">starts</label>

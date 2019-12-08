@@ -12,12 +12,15 @@ export default function ShowAncestors({ ancestors, section }) {
             {ancestorItems.map(ancestorItem => {
               return Object.keys(ancestorItem).map(key => {
                 return (
-                  <div className="planning__transferred-list-item" key={uuid()}>
+                  <div
+                    className={`planning__transferred-list-item planning__transferred-list-item--${key}`}
+                    key={uuid()}
+                  >
                     <label className="planning__transferred-list-item-label">
                       {key}
                     </label>
 
-                    <div className="wplanning__transferred-list-item-value">
+                    <div className="planning__transferred-list-item-value">
                       {ancestorItem[key]}
                     </div>
                   </div>

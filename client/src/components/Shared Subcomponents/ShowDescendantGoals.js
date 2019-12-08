@@ -8,7 +8,7 @@ export default function ShowDescendantGoals({ descendants }) {
       if (descendants[descendantArrayName]) {
         const descendantArray = descendants[descendantArrayName];
         return (
-          <div className="planning__transferred">
+          <div className="planning__transferred" key={uuid()}>
             <h4 className="planning__transferred-title">{`${descendantArrayName} goals`}</h4>
             <div className="planning__transferred__collection">
               {descendantArray.map(descendant => {
@@ -24,7 +24,10 @@ export default function ShowDescendantGoals({ descendants }) {
                     <div className="planning__transferred-list">
                       {descendantGoals.map(descendantGoal => {
                         return (
-                          <div className="planning__transferred-list-item-value">
+                          <div
+                            className="planning__transferred-list-item-value"
+                            key={uuid()}
+                          >
                             {descendantGoal.goal}
                           </div>
                         );

@@ -25,7 +25,10 @@ export default function ShowDescendants({ descendants, section }) {
                       {descendantItems.map(descendantItem => {
                         return Object.keys(descendantItem).map(key => {
                           return (
-                            <div className="planning__transferred-list-item">
+                            <div
+                              className={`planning__transferred-list-item planning__transferred-list-item--${key}`}
+                              key={uuid()}
+                            >
                               <label className="planning__transferred-list-item-label">
                                 {key}
                               </label>
