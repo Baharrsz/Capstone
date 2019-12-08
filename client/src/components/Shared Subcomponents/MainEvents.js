@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import TimePicker from "react-time-picker";
+import { format } from "date-fns";
+// import TimePicker from "react-time-picker";
+import TimePicker from "./TimePicker";
 import uuid from "uuid";
 
 var delayed;
@@ -7,7 +9,7 @@ export default class MainEvents extends Component {
   constructor(props) {
     super(props);
   }
-  state = {};
+  state = { starts: undefined, ends: undefined };
   render() {
     //The list of events previously added to the database
     const eventsKeys = Object.keys(this.props.mainEvents);
@@ -62,23 +64,20 @@ export default class MainEvents extends Component {
           className="planning__main-event planning__main-event--new"
           onSubmit={this.props.addNewEvent}
         >
-          <label className="planning__main-event-label">starts</label>
+          {/* <label className="planning__main-event-label">starts</label> */}
           <TimePicker
             className="planning__main-event-value"
-            value={this.state.startTime}
-            name="starts"
-            onChange={this.changeStart}
+            label="starts"
+            changeParentState={this.setTime}
             required
           />
 
-          <label className="planning__main-event-label">ends</label>
+          {/* <label className="planning__main-event-label">ends</label> */}
           <div className="planning__main-event-value">
             <TimePicker
               className="planning__main-events-value"
-              value={this.state.endTime}
-              clockIcon={null}
-              name="ends"
-              onChange={this.changeEnd}
+              label="ends"
+              changeParentState={this.setTime}
               required
             />
           </div>
@@ -101,19 +100,23 @@ export default class MainEvents extends Component {
     );
   }
 
-  changeStart = startTime => {
-    clearTimeout(delayed);
-    delayed = setTimeout(() => {
-      //   const parts = startTime.split(":");
-      //   const endTime = `${Number(parts[0]) + 1}:${parts[1]}`;
-      this.setState({ startTime });
-    }, 500);
-  };
+  // changeStart = startTime => {
+  //   clearTimeout(delayed);
+  //   delayed = setTimeout(() => {
+  //     //   const parts = startTime.split(":");
+  //     //   const endTime = `${Number(parts[0]) + 1}:${parts[1]}`;
+  //     this.setState({ startTime });
+  //   }, 500);
+  // };
 
-  changeEnd = endTime => {
-    clearTimeout(delayed);
-    delayed = setTimeout(() => {
-      this.setState({ endTime });
-    }, 500);
+  // changeEnd = endTime => {
+  //   clearTimeout(delayed);
+  //   delayed = setTimeout(() => {
+  //     this.setState({ endTime });
+  //   }, 500);
+  // };
+
+  setTime = (label, value) => {
+    this.setState({ [label]: format(value, "HH:mm") });
   };
 }

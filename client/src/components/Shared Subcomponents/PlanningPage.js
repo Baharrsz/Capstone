@@ -3,8 +3,6 @@ import axios from "axios";
 import uuid from "uuid";
 
 import PlanningTitle from "./PlanningTitle";
-import EditEvents from "./EditEvents";
-import EditGoals from "./EditGoals";
 import PlanningSection from "./PlanningSection";
 import ShowAncestors from "./ShowAncestors";
 import ShowAncestorGoals from "./ShowAncestorGoals";
@@ -19,6 +17,7 @@ export default class PlanningPage extends Component {
   constructor(props) {
     super(props);
     this.url = `http://localhost:5000${this.props.match.url.slice(0, -5)}`;
+    this.MainEvents = React.createRef();
     this.MainSchedule = React.createRef();
   }
 
@@ -59,6 +58,7 @@ export default class PlanningPage extends Component {
           }
           mainController={
             <MainEvents
+              ref={this.MainEvents}
               mainEvents={this.state.main.events}
               deleteEvent={this.deleteEvent}
               addNewEvent={this.addNewEvent}
@@ -170,12 +170,12 @@ export default class PlanningPage extends Component {
   //This will be called in MainEvents to add new events
   addNewEvent = clickAdd => {
     clickAdd.preventDefault();
-    const eventId = `${clickAdd.target.starts.value}-${uuid()}`;
+    const eventId = `${this.MainEvents.current.state.starts}-${uuid()}`;
     let newEvent = {};
     newEvent[eventId] = {
       event: clickAdd.target.event.value,
-      starts: clickAdd.target.starts.value,
-      ends: clickAdd.target.ends.value,
+      starts: this.MainEvents.current.state.starts,
+      ends: this.MainEvents.current.state.ends,
       location: clickAdd.target.location.value
     };
     this.setState({
