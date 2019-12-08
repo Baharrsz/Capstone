@@ -94,7 +94,31 @@ export default class PlanningPage extends Component {
             />
           }
         />
-        {this.props.schedule}
+
+        {/* Schedule section */}
+        <PlanningSection
+          sectionTitle="Schedule"
+          className="planning__schedule"
+          ancestorsController={
+            <ShowAncestors
+              ancestors={this.state.ancestors}
+              section="schedule"
+            />
+          }
+          // mainController={
+          //   <MainEvents
+          //     mainEvents={this.state.main.events}
+          //     deleteEvent={this.deleteEvent}
+          //     addNewEvent={this.addNewEvent}
+          //   />
+          // }
+          descendantsController={
+            <ShowDescendants
+              descendants={this.state.descendants}
+              section="schedule"
+            />
+          }
+        />
       </div>
     );
   }

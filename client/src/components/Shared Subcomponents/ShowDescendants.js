@@ -8,7 +8,7 @@ export default function ShowDescendants({ descendants, section }) {
       if (descendants[descendantArrayName]) {
         const descendantArray = descendants[descendantArrayName];
         return (
-          <div className="planning__transferred">
+          <div className="planning__transferred" key={uuid()}>
             <h4 className="planning__transferred-title">{`${descendantArrayName} ${section}`}</h4>
             <div className="planning__transferred__collection">
               {descendantArray.map(descendant => {
