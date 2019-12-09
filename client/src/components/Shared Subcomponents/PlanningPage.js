@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { format } from "date-fns";
 import axios from "axios";
 import uuid from "uuid";
 
@@ -59,6 +60,7 @@ export default class PlanningPage extends Component {
           mainController={
             <MainEvents
               ref={this.MainEvents}
+              params={this.props.match.params}
               mainEvents={this.state.main.events}
               deleteEvent={this.deleteEvent}
               addNewEvent={this.addNewEvent}
@@ -111,6 +113,7 @@ export default class PlanningPage extends Component {
           mainController={
             <MainSchedule
               ref={this.MainSchedule}
+              params={this.props.match.params}
               mainSchedule={this.state.main.schedule}
               deleteScheduleItem={this.deleteScheduleItem}
               addNewScheduleItem={this.addNewScheduleItem}
@@ -174,8 +177,8 @@ export default class PlanningPage extends Component {
     let newEvent = {};
     newEvent[eventId] = {
       event: clickAdd.target.event.value,
-      starts: this.MainEvents.current.state.starts,
-      ends: this.MainEvents.current.state.ends,
+      starts: format(this.MainEvents.current.state.starts, "HH:mm"),
+      ends: format(this.MainEvents.current.state.ends, "HH:mm"),
       location: clickAdd.target.location.value
     };
     this.setState({

@@ -78,6 +78,7 @@ export default class MainSchedule extends Component {
             name="timeInfo"
             id="timeInfo"
             value={this.state}
+            params={this.props.params}
           />
           {/* <TimePicker /> */}
 

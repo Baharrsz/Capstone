@@ -68,6 +68,7 @@ export default class MainEvents extends Component {
           <TimePicker
             className="planning__main-event-value"
             label="starts"
+            params={this.props.params}
             changeParentState={this.setTime}
             required
           />
@@ -77,6 +78,7 @@ export default class MainEvents extends Component {
             <TimePicker
               className="planning__main-events-value"
               label="ends"
+              params={this.props.params}
               changeParentState={this.setTime}
               required
             />
@@ -117,6 +119,6 @@ export default class MainEvents extends Component {
   // };
 
   setTime = (label, value) => {
-    this.setState({ [label]: format(value, "HH:mm") });
+    this.setState({ [label]: value }); ///!!!!HERE
   };
 }
