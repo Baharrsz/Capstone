@@ -33,17 +33,30 @@ export default class PlanningPage extends Component {
       <>Loading...</>
     ) : (
       <div className="planning">
-        <PlanningTitle
-          className="planning__title"
-          params={this.props.match.params}
-        />
-        <button
-          className="planning__btn"
-          type="button"
-          onClick={this.sendToDatabase}
-        >
-          Save
-        </button>
+        <div className="planning__heading">
+          <div className="planning__heading-date placard">
+            <button
+              className="planning__heading-jumpBtn jumpBtn placard__jumpBtn placard__jumpBtn--prev"
+              value={-1}
+              onClick={this.jumpToMonth} //Not implemented
+            ></button>
+            <PlanningTitle
+              className="planning__title placard__date"
+              params={this.props.match.params}
+            />
+            <button
+              className="planning__heading-jumpBtn jumpBtn placard__jumpBtn"
+              value={1}
+              onClick={this.jumpToMonth} //Not implemented
+            ></button>
+          </div>
+
+          <button
+            className="planning__heading-btn"
+            type="button"
+            onClick={this.sendToDatabase}
+          ></button>
+        </div>
 
         {/* Edit Section */}
         {/* <EditEvents

@@ -1,16 +1,38 @@
 .planning {
+  background-color: $grey;
   display: grid;
+  justify-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
-    "title title button"
+    "heading heading heading"
     "events goals schedule ";
 
-  &__title {
-    grid-area: title;
-  }
-  &__btn {
-    grid-area: button;
+  &__heading {
+    grid-area: heading;
+    width: 95vw;
+    height: 10vh;
+    background-color: $yellowish-white;
+    border-radius: 5px;
+    margin: 15px;
+    display: flex;
+    justify-content: space-around;
+
+    &-date {
+    }
+
+    &-btn {
+      width: 5vw;
+      height: 5vw;
+      margin: 5vw;
+      background-image: url(../assets/icons/SVG/save.png);
+      background-size: 5vw 5vw;
+      background-position: center;
+      border: none;
+      margin: 0;
+
+      // margin-left: auto;
+    }
   }
 
   &__events {
@@ -26,7 +48,21 @@
   }
 
   &__section {
-    border: 1px solid $black;
-    margin: 5px;
+    * {
+      margin: 0;
+    }
+    margin: 8px;
+    background-color: $yellowish-white;
+    border-radius: 8px;
+
+    &-title {
+      text-align: center;
+      padding: 5px;
+      background-color: $yellow;
+      border-radius: 8px 8px 0 0;
+    }
+
+    &__transferred {
+    }
   }
 }

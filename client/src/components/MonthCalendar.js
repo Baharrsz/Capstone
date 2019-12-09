@@ -23,19 +23,19 @@ export default class MonthCalendar extends Component {
             Plan it!
           </Link>
         </button>
-        <section className="monthcal__header calendar__header">
+        <section className="monthcal__header placard">
           <button
-            className="monthcal__header-btn jumpBtn"
+            className="monthcal__header-btn placard__jumpBtn placard__jumpBtn--prev"
             value={-1}
             onClick={this.jumpToMonth}
           >
             ◀
           </button>
-          <h1 className="monthcal__header-title">
+          <h1 className="monthcal__header-title placard__date">
             {format(dateToShow, "MMMM y")}
           </h1>
           <button
-            className="monthcal__header-btn jumpBtn"
+            className="monthcal__header-btn placard__jumpBtn"
             value={1}
             onClick={this.jumpToMonth}
           >
