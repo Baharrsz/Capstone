@@ -3,9 +3,10 @@
 @import "./partials//generics";
 @import "./partials/week-calendar.scss";
 @import "./partials/month-calendar";
-@import "./partials/planning";
-
-body {
+@import "./partials/planning-general";
+@import "./partials/planning-main";
+@import "./partials/planning-transferred";
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

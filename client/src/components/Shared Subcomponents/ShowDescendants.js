@@ -33,7 +33,7 @@ export default class ShowDescendants extends Component {
                       key={uuid()}
                     >
                       <button
-                        className="planning__transferred-title"
+                        className="planning__transferred__collection-title"
                         onClick={click => this.showOrHide(click, descendant.id)}
                       >
                         {descendant.id}
@@ -44,22 +44,26 @@ export default class ShowDescendants extends Component {
                         }`}
                       >
                         {descendantItems.map(descendantItem => {
-                          return Object.keys(descendantItem).map(key => {
-                            return (
-                              <div
-                                className={`planning__transferred-list-item planning__transferred-list-item--${key}`}
-                                key={uuid()}
-                              >
-                                <label className="planning__transferred-list-item-label">
-                                  {key}
-                                </label>
+                          return (
+                            <div className="planning__transferred-list-item">
+                              {Object.keys(descendantItem).map(key => {
+                                return (
+                                  <div
+                                    className={`planning__transferred-list-item-key planning__transferred-list-item--${key}`}
+                                    key={uuid()}
+                                  >
+                                    <label className="planning__transferred-list-item-label">
+                                      {key}
+                                    </label>
 
-                                <div className="planning__transferred-list-item-value">
-                                  {descendantItem[key]}
-                                </div>
-                              </div>
-                            );
-                          });
+                                    <div className="planning__transferred-list-item-value">
+                                      {descendantItem[key]}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          );
                         })}
                       </div>
                     </div>

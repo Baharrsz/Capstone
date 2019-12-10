@@ -1,6 +1,9 @@
 .hide {
   display: none;
 }
+.show {
+  // transform: ;
+}
 .placard {
   * {
     margin: 0;
@@ -28,5 +31,38 @@
 
   &__date {
     padding: 0 5vw;
+  }
+}
+
+.time-picker {
+  * {
+    margin: 0;
+  }
+
+  input {
+    font-size: 12px;
+    height: 16px;
+  }
+  &__select {
+    display: flex;
+
+    &-hour {
+      flex-grow: 1;
+    }
+    &-minute {
+      flex-grow: 1;
+    }
+    &_ampm {
+      flex-grow: 1;
+    }
+  }
+
+  &__control {
+    height: 20px;
+  }
+
+  &__input {
+    line-height: 24px;
+    height: 24px;
   }
 }

@@ -24,22 +24,26 @@ export default class ShowAncestors extends Component {
               }`}
             >
               {ancestorItems.map(ancestorItem => {
-                return Object.keys(ancestorItem).map(key => {
-                  return (
-                    <div
-                      className={`planning__transferred-list-item planning__transferred-list-item--${key}`}
-                      key={uuid()}
-                    >
-                      <label className="planning__transferred-list-item-label">
-                        {key}
-                      </label>
+                return (
+                  <div className="planning__transferred-list-item">
+                    {Object.keys(ancestorItem).map(key => {
+                      return (
+                        <div
+                          className={`planning__transferred-list-item-key planning__transferred-list-item--${key}`}
+                          key={uuid()}
+                        >
+                          <label className="planning__transferred-list-item-label">
+                            {key}
+                          </label>
 
-                      <div className="planning__transferred-list-item-value">
-                        {ancestorItem[key]}
-                      </div>
-                    </div>
-                  );
-                });
+                          <div className="planning__transferred-list-item-value">
+                            {ancestorItem[key]}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
               })}
             </div>
           </div>

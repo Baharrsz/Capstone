@@ -33,7 +33,7 @@ export default class ShowDescendantGoals extends Component {
                       key={uuid()}
                     >
                       <button
-                        className="planning__transferred-title"
+                        className="planning__transferred__collection-title"
                         onClick={click => this.showOrHide(click, descendant.id)}
                       >
                         {descendant.id}
@@ -46,11 +46,24 @@ export default class ShowDescendantGoals extends Component {
                         {descendantGoals.map(descendantGoal => {
                           return (
                             <div
-                              className="planning__transferred-list-item-value"
+                              className="planning__transferred-list-item"
                               key={uuid()}
                             >
-                              {descendantGoal.goal}
+                              <div className="planning__transferred-list-item--label">
+                                <input
+                                  className="planning__transferred-list-item--check"
+                                  type="checkbox"
+                                  checked={descendantGoal.checked === "true"}
+                                ></input>
+                                {descendantGoal.goal}
+                              </div>
                             </div>
+                            // <div
+                            //   className="planning__transferred-list-item-value"
+                            //   key={uuid()}
+                            // >
+                            //   {descendantGoal.goal}
+                            // </div>
                           );
                         })}
                       </div>

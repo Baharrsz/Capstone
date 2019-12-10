@@ -1,0 +1,198 @@
+.planning {
+  &__main {
+    background-color: white;
+    padding: 10px;
+
+    input {
+      border: none;
+      width: fit-content;
+    }
+
+    &-event {
+      width: 100%;
+      padding: 5px 10px;
+      border-bottom: 1px solid lightgrey;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-areas:
+        "event event"
+        "starts ends"
+        "location buttons";
+      input {
+        width: 35%;
+        margin-left: 5px;
+      }
+
+      &-item {
+        &--event {
+          grid-area: event;
+        }
+        &--starts {
+          grid-area: starts;
+        }
+        &--ends {
+          grid-area: ends;
+        }
+        &--location {
+          grid-area: location;
+        }
+        &--buttons {
+          grid-area: buttons;
+          justify-self: end;
+          align-self: end;
+        }
+      }
+
+      &--new {
+        * {
+          align-self: center;
+        }
+
+        grid-template-columns: 4fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+          "event ."
+          "starts starts"
+          "ends ends"
+          "location button";
+
+        input {
+          border-bottom: 1px solid lightgrey;
+          height: 40px;
+          border-radius: 4px;
+          width: fit-content;
+        }
+
+        &-btn {
+          grid-area: button;
+          justify-self: end;
+        }
+      }
+    }
+
+    &-goal {
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
+
+      &-check {
+        margin-right: 10px;
+      }
+
+      &-label {
+        width: fit-content;
+      }
+
+      &-buttons {
+        align-self: flex-end;
+      }
+
+      &--new {
+        padding: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+          border-bottom: 1px solid lightgray;
+          height: 30px;
+          padding: 5px;
+        }
+      }
+    }
+    &-goals {
+      border-bottom: 1px solid lightgray;
+
+      &--focused {
+        background-color: $mellower;
+        border-radius: 10px;
+        margin: 10px 0;
+      }
+    }
+
+    &-schedule {
+      width: 100%;
+
+      &-rows {
+        width: 100%;
+      }
+
+      &Row {
+        width: 100%;
+        border-bottom: 1px solid lightgray;
+        padding: 5px 0;
+        display: grid;
+        grid-template-columns: 2vw 5.5vw 5.5vw 5.5vw 5.5vw 2vw;
+        grid-template-areas: "order item starts ends duration delete";
+
+        > * {
+          min-width: 0;
+          max-width: 5vw;
+          overflow: hidden;
+        }
+
+        &--header {
+          font-size: 12px;
+        }
+
+        &--new {
+          border-top: 3px solid lightgray;
+          grid-template-columns: 2vw 5.5vw 16.5vw 2vw;
+          grid-template-areas: "order item time delete";
+
+          label {
+            display: none;
+          }
+        }
+
+        &-timeInfo {
+          grid-area: time;
+          // display: flex;
+          // flex-direction: row;
+          // justify-content: space-evenly;
+          // width: 16.5vw;
+          // border: 1px solid black;
+
+          // .time-picker__select {
+          //   width: 2vw;
+          // }
+
+          // > * {
+          //   width: 5.5vw;
+          //   margin-left: 15px;
+          //   border: 1px solid black;
+
+          //   * {
+          //     max-height: 24px;
+          //     // max-width: 1vw;
+          //     line-height: 12px;
+          //     font-size: 12px;
+          //   }
+          // }
+        }
+
+        &-order {
+          grid-area: order;
+        }
+        &-item {
+          grid-area: item;
+        }
+        &-starts {
+          grid-area: starts;
+        }
+        &-ends {
+          grid-area: ends;
+        }
+        &-duration {
+          grid-area: duration;
+        }
+        &-delete {
+          grid-area: delete;
+        }
+      }
+    }
+  }
+}

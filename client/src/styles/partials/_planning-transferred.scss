@@ -1,0 +1,68 @@
+// .planning__ancestors--events {
+.planning__transferred {
+  width: 100%;
+
+  &__collection {
+    width: 100%;
+    text-align: center;
+    &-title {
+      background-color: $mellowest;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      padding: 5px;
+    }
+  }
+
+  &-list {
+    width: 100%;
+    padding: 0 1vw;
+
+    &-item {
+      font-size: 12px;
+      padding: 1vw 0;
+      border-bottom: 1px dashed lightgray;
+      text-align: left;
+      display: grid;
+      column-gap: 1vw;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        "event location"
+        "starts ends";
+      //   width: 100%;
+
+      label {
+        display: none;
+      }
+
+      &--event,
+      &--item {
+        grid-area: event;
+        font-weight: bold;
+      }
+
+      &--location,
+      &--duration {
+        grid-area: location;
+      }
+
+      &--check {
+        margin-right: 5px;
+      }
+      &--starts {
+        grid-area: starts;
+      }
+      &--ends {
+        grid-area: ends;
+      }
+    }
+  }
+}
+
+.planning__ancestors--goals,
+.planning__descendants--goals {
+  .planning__transferred-list-item {
+    display: block;
+  }
+}

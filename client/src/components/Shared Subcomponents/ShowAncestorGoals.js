@@ -25,7 +25,14 @@ export default class ShowAncestorGoals extends Component {
               {ancestorGoals.map(ancestorGoal => {
                 return (
                   <div className="planning__transferred-list-item" key={uuid()}>
-                    {ancestorGoal.goal}
+                    <div className="planning__transferred-list-item--label">
+                      <input
+                        className="planning__transferred-list-item--check"
+                        type="checkbox"
+                        checked={ancestorGoal.checked === "true"}
+                      ></input>
+                      {ancestorGoal.goal}
+                    </div>
                   </div>
                 );
               })}

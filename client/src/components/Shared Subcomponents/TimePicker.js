@@ -51,10 +51,11 @@ export default class TimePicker extends Component {
 
     return (
       <div className={`${this.props.className} time-picker`}>
-        <label className={`time-picker-label`}>{label}</label>
-        <div className={`time-picker-input`}>
+        <label className={`time-picker__label`}>{label}</label>
+        <div className={`time-picker__select`}>
           <Select
-            className={`time-picker-input-hour`}
+            className={`time-picker__select-hour`}
+            classNamePrefix="time-picker"
             options={
               type === "day" ? hours : type === "week" ? weekDays : daysOrWeeks
             }
@@ -66,23 +67,40 @@ export default class TimePicker extends Component {
                 : "dayOrWeek"
             }
             onChange={this.setTime}
+            components={{
+              DropdownIndicator: () => null,
+              IndicatorSeparator: () => null,
+              Placeholder: () => "-"
+            }}
           />
           {!(type === "day") ? (
             <></>
           ) : (
             <>
-              <span className={`time-picker-input-divider`}>:</span>
+              <span className={`time-picker__select-divider`}>:</span>
               <Select
-                className={`time-picker-input-minute`}
+                className={`time-picker__select-minute`}
+                classNamePrefix="time-picker"
                 options={minutes}
                 name="minute"
                 onChange={this.setTime}
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                  Placeholder: () => "--"
+                }}
               />
               <Select
-                className={`time-picker-input-ampm`}
+                className={`time-picker__select-ampm`}
+                classNamePrefix="time-picker"
                 options={ampm}
                 name="ampm"
                 onChange={this.setTime}
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                  Placeholder: () => "a.m."
+                }}
               />
             </>
           )}

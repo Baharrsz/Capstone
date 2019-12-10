@@ -17,27 +17,31 @@ export default class MainGoals extends Component {
             <input
               className="planning__main-goal-check"
               type="checkbox"
-              checked={goal.checked === "true"}
+              defaultChecked={goal.checked === "true"}
             ></input>
             {goal.goal}
           </label>
-          <button
-            className="planning__main-goal-btn planning__main-goal-btn--delete planning__btn--delete"
-            type="button"
-            form={goal.id}
-            value={goal.focus === "notFocus" ? "focus" : "notFocus"}
-            onClick={this.props.changeFocus}
-          >
-            {goal.focus === "notFocus" ? "focus" : "Remove focus"}
-          </button>
-          <button
-            className="planning__main-goal-btn planning__main-goal-btn--delete planning__btn--delete"
-            type="button"
-            form={goal.id}
-            onClick={this.props.deleteGoal}
-          >
-            Delete
-          </button>
+
+          <div className={`planning__main-goal-buttons`}>
+            <button
+              className={`planning__main-goal-btn planning__btn planning__btn--${
+                goal.focus === "notFocus" ? "focus" : "remove-focus"
+              }`}
+              type="button"
+              form={goal.id}
+              value={goal.focus === "notFocus" ? "focus" : "notFocus"}
+              onClick={this.props.changeFocus}
+            >
+              {/* {goal.focus === "notFocus" ? "focus" : "Remove focus"} */}
+            </button>
+            <button className="planning__main-goal-btn planning__btn planning__btn--copy"></button>
+            <button
+              className="planning__main-goal-btn planning__btn planning__btn--delete"
+              type="button"
+              form={goal.id}
+              onClick={this.props.deleteGoal}
+            ></button>
+          </div>
         </form>
       );
       if (goal.focus === "focus") {
@@ -63,9 +67,7 @@ export default class MainGoals extends Component {
             name="goal"
             placeholder="Add a new goal"
           />
-          <button className="planning__main-goal-btn planning__btn--add">
-            Add
-          </button>
+          <button className="planning__main--new-goal-btn planning__btn planning__btn--add"></button>
         </form>
       </div>
     );

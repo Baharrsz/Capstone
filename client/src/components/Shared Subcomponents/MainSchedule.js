@@ -18,7 +18,7 @@ export default class MainSchedule extends Component {
       const scheduleRow = scheduleItemKeys.map(scheduleItemKey => {
         return (
           <input
-            className={`planning__main-scheduleRow-input planning__main-scheduleRow-input--${scheduleItemKey}`}
+            className={`planning__main-scheduleRow-input planning__main-scheduleRow-${scheduleItemKey}`}
             name={scheduleItemKey}
             defaultValue={scheduleItem[scheduleItemKey]}
             key={uuid()}
@@ -28,51 +28,63 @@ export default class MainSchedule extends Component {
       return (
         <form className="planning__main-scheduleRow" key={uuid()} id={key}>
           <input
-            className="planning__main-scheduleRow-input planning__main-scheduleRow-input--order"
+            className="planning__main-scheduleRow-input planning__main-scheduleRow-order"
             disabled
             value={key}
           />
           {scheduleRow}
           <button
-            className="planning__main-scheduleRow-btn planning__main-scheduleRow-btn--delete planning__btn--delete"
+            className="planning__main-scheduleRow-btn planning__btn planning__btn--delete"
             type="button"
             form={key}
             onClick={this.props.deleteScheduleItem}
-          >
-            Delete
-          </button>
+          ></button>
         </form>
       );
     });
 
     return (
       <div className="planning__main--schedule planning__main">
-        <div className="planning__main-schedule-header">
-          <div className="planning__main-schedule-header-item">Item</div>
-          <div className="planning__main-schedule-header-item">Starts</div>
-          <div className="planning__main-schedule-header-item">Ends</div>
-          <div className="planning__main-schedule-header-item">Duration</div>
+        <div className="planning__main-schedule-rows">
+          <div className="planning__main-scheduleRow planning__main-scheduleRow--header">
+            <div className="planning__main-schedule-header-item planning__main-scheduleRow-item">
+              Item
+            </div>
+            <div className="planning__main-schedule-header-item planning__main-scheduleRow-starts">
+              Starts
+            </div>
+            <div className="planning__main-schedule-header-item planning__main-scheduleRow-ends">
+              Ends
+            </div>
+            <div className="planning__main-schedule-header-item planning__main-scheduleRow-duration">
+              Duration
+            </div>
+          </div>
+          {scheduleRows}
         </div>
-        <div className="planning__main-schedule-rows">{scheduleRows}</div>
 
         <form
-          className="planning__main-schedule planning__main-schedule--new"
+          className="planning__main-scheduleRow planning__main-scheduleRow--new"
           onSubmit={this.props.addNewScheduleItem}
         >
           <input
-            className="planning__main-schedule-order"
+            className="planning__main-scheduleRow-input planning__main-scheduleRow-order"
             name="order"
             disabled
             value={Object.keys(this.props.mainSchedule).length + 1}
           />
-          <label className="planning__main-schedule-label">item</label>
-          <input
-            className="planning__main-schedule-value"
-            name="item"
-            required
-          />
+
+          <div className="planning__main-scheduleRow-input planning__main-scheduleRow-item">
+            <label className="planning__main-schedule-label">item</label>
+            <input
+              className="planning__main-schedule-value"
+              name="item"
+              required
+            />
+          </div>
+
           <TimeAndDuration
-            className="Planning__main-schedule"
+            className="planning__main-scheduleRow-timeInfo"
             sendTimeAndDuration={this.sendTimeAndDuration}
             getDurationInput={this.getDurationInput}
             name="timeInfo"
@@ -82,9 +94,7 @@ export default class MainSchedule extends Component {
           />
           {/* <TimePicker /> */}
 
-          <button className="planning__main-schedule-btn planning__btn--add">
-            Add
-          </button>
+          <button className="planning__main-scheduleRow-btn planning__btn planning__btn--add"></button>
         </form>
       </div>
     );

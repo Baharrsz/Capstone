@@ -23,7 +23,7 @@ export default class TimeAndDuration extends Component {
           params={this.props.params}
         />
 
-        <div className={`${this.props.className}-duration`}>
+        <div className={`${this.props.className}--duration`}>
           <label className={`${this.props.className}-duration-label`}>
             duration
           </label>

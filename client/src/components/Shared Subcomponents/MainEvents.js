@@ -17,42 +17,61 @@ export default class MainEvents extends Component {
       const event = this.props.mainEvents[key];
       return (
         <form className="planning__main-event" key={uuid()} id={key}>
-          <label className="planning__main-event-label">event</label>
-          <input
-            className="planning__main-event-value"
-            name="event"
-            defaultValue={event.event}
-          />
-
-          <label className="planning__main-event-label">starts</label>
-          <input
-            className="planning__main-event-value"
-            name="starts"
-            defaultValue={event.starts}
-          />
-
-          <label className="planning__main-event-label">ends</label>
-          <input
-            className="planning__main-event-value"
-            name="ends"
-            defaultValue={event.ends}
-          />
-
-          <label className="planning__main-event-label">location</label>
-          <input
-            className="planning__main-event-value"
-            name="location"
-            defaultValue={event.location}
-          />
-
-          <button
-            className="planning__main-event-btn planning__main-event-btn--delete planning__btn--delete"
-            type="button"
-            form={key}
-            onClick={this.props.deleteEvent}
+          <div
+            className={`planning__main-event-item planning__main-event-item--event`}
           >
-            Delete
-          </button>
+            <label className="planning__main-event-label">event</label>
+            <input
+              className="planning__main-event-value"
+              name="event"
+              defaultValue={event.event}
+            />
+          </div>
+
+          <div
+            className={`planning__main-event-item planning__main-event-item--starts`}
+          >
+            <label className="planning__main-event-label">starts</label>
+            <input
+              className="planning__main-event-value"
+              name="starts"
+              defaultValue={event.starts}
+            />
+          </div>
+
+          <div
+            className={`planning__main-event-item planning__main-event-item--ends`}
+          >
+            <label className="planning__main-event-label">ends</label>
+            <input
+              className="planning__main-event-value"
+              name="ends"
+              defaultValue={event.ends}
+            />
+          </div>
+
+          <div
+            className={`planning__main-event-item planning__main-event-item--location`}
+          >
+            <label className="planning__main-event-label">location</label>
+            <input
+              className="planning__main-event-value"
+              name="location"
+              defaultValue={event.location}
+            />
+          </div>
+
+          <div
+            className={`planning__main-event-item planning__main-event-item--buttons`}
+          >
+            <button className="planning__main-event-btn planning__btn planning__btn--copy"></button>
+            <button
+              className="planning__main-event-btn planning__btn planning__btn--delete"
+              type="button"
+              form={key}
+              onClick={this.props.deleteEvent}
+            ></button>
+          </div>
         </form>
       );
     });
@@ -66,7 +85,7 @@ export default class MainEvents extends Component {
         >
           {/* <label className="planning__main-event-label">starts</label> */}
           <TimePicker
-            className="planning__main-event-value"
+            className="planning__main-event-item planning__main-event-item--starts"
             label="starts"
             params={this.props.params}
             changeParentState={this.setTime}
@@ -74,29 +93,36 @@ export default class MainEvents extends Component {
           />
 
           {/* <label className="planning__main-event-label">ends</label> */}
-          <div className="planning__main-event-value">
-            <TimePicker
-              className="planning__main-events-value"
-              label="ends"
-              params={this.props.params}
-              changeParentState={this.setTime}
+          <TimePicker
+            className="planning__main-event-item planning__main-event-item--ends"
+            label="ends"
+            params={this.props.params}
+            changeParentState={this.setTime}
+            required
+          />
+          <div
+            className={`planning__main-event-item planning__main-event-item--event`}
+          >
+            <label className="planning__main-event-label">event</label>
+            <input
+              className="planning__main-event-value"
+              name="event"
               required
             />
           </div>
 
-          <label className="planning__main-event-label">event</label>
-          <input className="planning__main-event-value" name="event" required />
+          <div
+            className={`planning__main-event-item planning__main-event-item--location`}
+          >
+            <label className="planning__main-event-label">location</label>
+            <input
+              className="planning__main-event-value"
+              name="location"
+              defaultValue=""
+            />
+          </div>
 
-          <label className="planning__main-event-label">location</label>
-          <input
-            className="planning__main-event-value"
-            name="location"
-            defaultValue=""
-          />
-
-          <button className="planning__main-event-btn planning__btn--add">
-            Add
-          </button>
+          <button className="planning__main-event--new-btn planning__btn planning__btn--add"></button>
         </form>
       </div>
     );
