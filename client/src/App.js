@@ -2,16 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import MonthCalendar from "./components/MonthCalendar";
 
-import MonthPlanning from "./components/MonthPlanning";
 import WeekCalendar from "./components/WeekCalendar";
-import WeekPlanning from "./components/WeekPlanning";
-import DayPlanning from "./components/DayPlanning";
 import PlanningPage from "./components/Shared Subcomponents/PlanningPage";
-
-import Events from "./components/WeekCalendar Subcomponents/ViewEvents";
-import Goals from "./components/WeekCalendar Subcomponents/ViewGoals";
-import Schedule from "./components/WeekCalendar Subcomponents/ViewSchedule";
-import PlanningTitle from "./components/Shared Subcomponents/PlanningTitle";
 
 function App() {
   return (
@@ -21,61 +13,16 @@ function App() {
         <Route
           path="/:year/:month/plan"
           exact
-          render={props => (
-            <PlanningPage
-              // title={
-              //   <PlanningTitle
-              //     className="planning__title"
-              //     params={props.match.params}
-              //   />
-              // }
-              match={props.match}
-              events={<Events className="planning__section planning__events" />}
-              goals={<Goals className="planning__section planning__goals" />}
-              schedule={
-                <Schedule className="planning__section planning__schedule" />
-              }
-            />
-          )}
+          render={props => <PlanningPage match={props.match} />}
         />
         <Route path="/:year/week/:week" exact component={WeekCalendar} />
         <Route
           path="/:year/week/:week/plan"
-          render={props => (
-            <PlanningPage
-              // title={
-              //   <PlanningTitle
-              //     className="planning__title"
-              //     params={props.match.params}
-              //   />
-              // }
-              match={props.match}
-              events={<Events className="planning__section planning__events" />}
-              goals={<Goals className="planning__section planning__goals" />}
-              schedule={
-                <Schedule className="planning__section planning__schedule" />
-              }
-            />
-          )}
+          render={props => <PlanningPage match={props.match} />}
         />
         <Route
           path="/:year/:month/:day/plan"
-          render={props => (
-            <PlanningPage
-              // title={
-              //   <PlanningTitle
-              //     className="planning__title"
-              //     params={props.match.params}
-              //   />
-              // }
-              match={props.match}
-              events={<Events className="planning__section planning__events" />}
-              goals={<Goals className="planning__section planning__goals" />}
-              schedule={
-                <Schedule className="planning__section planning__schedule" />
-              }
-            />
-          )}
+          render={props => <PlanningPage match={props.match} />}
         />
       </Switch>
     </div>

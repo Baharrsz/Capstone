@@ -3,9 +3,8 @@ import { parse, format } from "date-fns";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import ViewEvents from "./ViewEvents";
+import ViewDaySections from "./ViewDaySections";
 import ViewGoals from "./ViewGoals";
-import ViewSchedule from "./ViewSchedule";
 
 export default class DayInWeek extends Component {
   constructor(props) {
@@ -31,19 +30,22 @@ export default class DayInWeek extends Component {
         <h2 className="weekcal__day-title">
           {format(this.dateToShow, "EEEE MMM do")}
         </h2>
-
-        <ViewEvents
-          className="weekcal__day-section weekcal__day-events"
-          events={this.state.events}
-        />
-        <ViewGoals
-          className="weekcal__day-section weekcal__day-goals"
-          goals={this.state.goals}
-        />
-        <ViewSchedule
-          className="weekcal__day-section weekcal__day-schedule"
-          schedule={this.state.schedule}
-        />
+        <div className="weekcal__day-sections">
+          <ViewDaySections
+            className="weekcal__day-section weekcal__day-events"
+            data={this.state.events}
+            section="Events"
+          />
+          <ViewGoals
+            className="weekcal__day-section weekcal__day-goals"
+            goals={this.state.goals}
+          />
+          <ViewDaySections
+            className="weekcal__day-section weekcal__day-events"
+            data={this.state.schedule}
+            section="Schedule"
+          />
+        </div>
       </Link>
     );
   }

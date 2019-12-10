@@ -15,33 +15,30 @@ export default class MonthCalendar extends Component {
     const dateToShow = new Date(this.state.yearToShow, this.state.monthToShow);
     return (
       <div className="monthcal">
-        <button className="monthcal__btn planBtn">
+        <div className="heading">
           <Link
             to={`${this.state.yearToShow}/${this.state.monthToShow + 1}/plan`}
-            className="monthcal__planLink planLink"
+            className="monthcal__planLink planLink  heading__mainBtn"
           >
-            Plan it!
+            <button className="monthcal__btn planBtn"></button>
           </Link>
-        </button>
-        <section className="monthcal__header placard">
-          <button
-            className="monthcal__header-btn placard__jumpBtn placard__jumpBtn--prev"
-            value={-1}
-            onClick={this.jumpToMonth}
-          >
-            ◀
-          </button>
-          <h1 className="monthcal__header-title placard__date">
-            {format(dateToShow, "MMMM y")}
-          </h1>
-          <button
-            className="monthcal__header-btn placard__jumpBtn"
-            value={1}
-            onClick={this.jumpToMonth}
-          >
-            ▶
-          </button>
-        </section>
+
+          <div className="monthcal__header placard">
+            <button
+              className="monthcal__header-btn placard__jumpBtn placard__jumpBtn--prev"
+              value={-1}
+              onClick={this.jumpToMonth}
+            ></button>
+            <h1 className="monthcal__header-title placard__date">
+              {format(dateToShow, "MMMM y")}
+            </h1>
+            <button
+              className="monthcal__header-btn placard__jumpBtn"
+              value={1}
+              onClick={this.jumpToMonth}
+            ></button>
+          </div>
+        </div>
 
         <MonthTable className="monthcal__table" month={dateToShow} />
         <Picker

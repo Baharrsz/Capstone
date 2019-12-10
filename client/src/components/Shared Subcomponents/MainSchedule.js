@@ -11,37 +11,44 @@ export default class MainSchedule extends Component {
   state = { start: undefined, end: undefined, duration: undefined };
   render() {
     //The list of schedule items previously added to the database
-    const scheduleKeys = Object.keys(this.props.mainSchedule);
-    const scheduleRows = scheduleKeys.map(key => {
-      const scheduleItem = this.props.mainSchedule[key];
-      const scheduleItemKeys = Object.keys(scheduleItem);
-      const scheduleRow = scheduleItemKeys.map(scheduleItemKey => {
+    let scheduleRows;
+    let length;
+    if (!this.props.mainSchedule) {
+      length = 0;
+    } else {
+      length = Object.keys(this.props.mainSchedule).length;
+      const scheduleKeys = Object.keys(this.props.mainSchedule);
+      scheduleRows = scheduleKeys.map(key => {
+        const scheduleItem = this.props.mainSchedule[key];
+        const scheduleItemKeys = Object.keys(scheduleItem);
+        const scheduleRow = scheduleItemKeys.map(scheduleItemKey => {
+          return (
+            <input
+              className={`planning__main-scheduleRow-input planning__main-scheduleRow-${scheduleItemKey}`}
+              name={scheduleItemKey}
+              defaultValue={scheduleItem[scheduleItemKey]}
+              key={uuid()}
+            />
+          );
+        });
         return (
-          <input
-            className={`planning__main-scheduleRow-input planning__main-scheduleRow-${scheduleItemKey}`}
-            name={scheduleItemKey}
-            defaultValue={scheduleItem[scheduleItemKey]}
-            key={uuid()}
-          />
+          <form className="planning__main-scheduleRow" key={uuid()} id={key}>
+            <input
+              className="planning__main-scheduleRow-input planning__main-scheduleRow-order"
+              disabled
+              value={key}
+            />
+            {scheduleRow}
+            <button
+              className="planning__main-scheduleRow-btn planning__btn planning__btn--delete"
+              type="button"
+              form={key}
+              onClick={this.props.deleteScheduleItem}
+            ></button>
+          </form>
         );
       });
-      return (
-        <form className="planning__main-scheduleRow" key={uuid()} id={key}>
-          <input
-            className="planning__main-scheduleRow-input planning__main-scheduleRow-order"
-            disabled
-            value={key}
-          />
-          {scheduleRow}
-          <button
-            className="planning__main-scheduleRow-btn planning__btn planning__btn--delete"
-            type="button"
-            form={key}
-            onClick={this.props.deleteScheduleItem}
-          ></button>
-        </form>
-      );
-    });
+    }
 
     return (
       <div className="planning__main--schedule planning__main">
@@ -71,7 +78,7 @@ export default class MainSchedule extends Component {
             className="planning__main-scheduleRow-input planning__main-scheduleRow-order"
             name="order"
             disabled
-            value={Object.keys(this.props.mainSchedule).length + 1}
+            value={length + 1}
           />
 
           <div className="planning__main-scheduleRow-input planning__main-scheduleRow-item">

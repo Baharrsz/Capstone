@@ -12,69 +12,72 @@ export default class MainEvents extends Component {
   state = { starts: undefined, ends: undefined };
   render() {
     //The list of events previously added to the database
-    const eventsKeys = Object.keys(this.props.mainEvents);
-    const eventsList = eventsKeys.map(key => {
-      const event = this.props.mainEvents[key];
-      return (
-        <form className="planning__main-event" key={uuid()} id={key}>
-          <div
-            className={`planning__main-event-item planning__main-event-item--event`}
-          >
-            <label className="planning__main-event-label">event</label>
-            <input
-              className="planning__main-event-value"
-              name="event"
-              defaultValue={event.event}
-            />
-          </div>
+    let eventsList;
+    if (this.props.mainEvents) {
+      const eventsKeys = Object.keys(this.props.mainEvents);
+      eventsList = eventsKeys.map(key => {
+        const event = this.props.mainEvents[key];
+        return (
+          <form className="planning__main-event" key={uuid()} id={key}>
+            <div
+              className={`planning__main-event-item planning__main-event-item--event`}
+            >
+              <label className="planning__main-event-label">event</label>
+              <input
+                className="planning__main-event-value"
+                name="event"
+                defaultValue={event.event}
+              />
+            </div>
 
-          <div
-            className={`planning__main-event-item planning__main-event-item--starts`}
-          >
-            <label className="planning__main-event-label">starts</label>
-            <input
-              className="planning__main-event-value"
-              name="starts"
-              defaultValue={event.starts}
-            />
-          </div>
+            <div
+              className={`planning__main-event-item planning__main-event-item--starts`}
+            >
+              <label className="planning__main-event-label">starts</label>
+              <input
+                className="planning__main-event-value"
+                name="starts"
+                defaultValue={event.starts}
+              />
+            </div>
 
-          <div
-            className={`planning__main-event-item planning__main-event-item--ends`}
-          >
-            <label className="planning__main-event-label">ends</label>
-            <input
-              className="planning__main-event-value"
-              name="ends"
-              defaultValue={event.ends}
-            />
-          </div>
+            <div
+              className={`planning__main-event-item planning__main-event-item--ends`}
+            >
+              <label className="planning__main-event-label">ends</label>
+              <input
+                className="planning__main-event-value"
+                name="ends"
+                defaultValue={event.ends}
+              />
+            </div>
 
-          <div
-            className={`planning__main-event-item planning__main-event-item--location`}
-          >
-            <label className="planning__main-event-label">location</label>
-            <input
-              className="planning__main-event-value"
-              name="location"
-              defaultValue={event.location}
-            />
-          </div>
+            <div
+              className={`planning__main-event-item planning__main-event-item--location`}
+            >
+              <label className="planning__main-event-label">location</label>
+              <input
+                className="planning__main-event-value"
+                name="location"
+                defaultValue={event.location}
+              />
+            </div>
 
-          <div
-            className={`planning__main-event-item planning__main-event-item--buttons`}
-          >
-            <button className="planning__main-event-btn planning__btn planning__btn--copy"></button>
-            <button
-              className="planning__main-event-btn planning__btn planning__btn--delete"
-              type="button"
-              form={key}
-              onClick={this.props.deleteEvent}
-            ></button>
-          </div>
-        </form>
-      );
-    });
+            <div
+              className={`planning__main-event-item planning__main-event-item--buttons`}
+            >
+              <button className="planning__main-event-btn planning__btn planning__btn--copy"></button>
+              <button
+                className="planning__main-event-btn planning__btn planning__btn--delete"
+                type="button"
+                form={key}
+                onClick={this.props.deleteEvent}
+              ></button>
+            </div>
+          </form>
+        );
+      });
+    }
 
     return (
       <div className="planning__main--events planning__main">

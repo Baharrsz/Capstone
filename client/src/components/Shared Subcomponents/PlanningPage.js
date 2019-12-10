@@ -33,26 +33,26 @@ export default class PlanningPage extends Component {
       <>Loading...</>
     ) : (
       <div className="planning">
-        <div className="planning__heading">
-          <div className="planning__heading-date placard">
+        <div className="planning__heading heading">
+          <div className="heading-date placard">
             <button
-              className="planning__heading-jumpBtn jumpBtn placard__jumpBtn placard__jumpBtn--prev"
+              className="heading__jumpBtn jumpBtn placard__jumpBtn placard__jumpBtn--prev"
               value={-1}
               onClick={this.jumpToMonth} //Not implemented
             ></button>
             <PlanningTitle
-              className="planning__title placard__date"
+              className="planning__title heading__title placard__date"
               params={this.props.match.params}
             />
             <button
-              className="planning__heading-jumpBtn jumpBtn placard__jumpBtn"
+              className="heading__jumpBtn jumpBtn placard__jumpBtn"
               value={1}
               onClick={this.jumpToMonth} //Not implemented
             ></button>
           </div>
 
           <button
-            className="planning__heading-btn"
+            className="heading__mainBtn saveBtn"
             type="button"
             onClick={this.sendToDatabase}
           ></button>

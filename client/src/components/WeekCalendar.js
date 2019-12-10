@@ -12,32 +12,29 @@ export default class WeekCalendar extends Component {
   render() {
     const weekToShow = this.state.weekToShow;
     return (
-      <div>
-        <button className="weekcal__btn planBtn">
+      <div className="weekcal">
+        <div className="weekcal-heading heading">
           <Link
             to={`/${weekToShow[0]}/week/${weekToShow[1]}/plan`}
-            className="weekcal__planLink planLink"
+            className="weekcal__planLink planLink heading__mainBtn"
           >
-            Plan it!
+            <button className="weekcal__btn heading__mainBtn planBtn"> </button>
           </Link>
-        </button>
-        <section className="weekcal__header calendar__header">
-          <button
-            className="weekcal__header-btn jumpBtn"
-            value={-1}
-            onClick={this.jumpToWeek}
-          >
-            ◀
-          </button>
-          <h1 className="weekcal__header-title jumpBtn">{`Week ${weekToShow[1]} of ${weekToShow[0]}`}</h1>
-          <button
-            className="weekcal__header-btn jumpBtn"
-            value={1}
-            onClick={this.jumpToWeek}
-          >
-            ▶
-          </button>
-        </section>
+
+          <div className="heading__date placard">
+            <button
+              className="heading__jumpBtn placard__jumpBtn placard__jumpBtn--prev"
+              value={-1}
+              onClick={this.jumpToWeek}
+            ></button>
+            <h1 className="weekcal__heading-title heading__title placard__date">{`Week ${weekToShow[1]} of ${weekToShow[0]}`}</h1>
+            <button
+              className="heading__jumpBtn placard__jumpBtn placard__jumpBtn"
+              value={1}
+              onClick={this.jumpToWeek}
+            ></button>
+          </div>
+        </div>
 
         <AllDaysInWeek className="weekcal__days" weekToShow={weekToShow} />
       </div>

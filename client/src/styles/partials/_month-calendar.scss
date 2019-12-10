@@ -1,21 +1,103 @@
 .monthcal {
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $grey;
+
   &__header {
   }
   &__table {
+    height: 70vh;
+    margin-top: 2vh;
+
     &-header {
       display: flex;
+      justify-content: flex-end;
+
+      &-day {
+        width: 6vw;
+        margin: 0.5vw;
+        text-align: center;
+        font-weight: bold;
+      }
     }
     &-weeks {
     }
     &-week {
+      height: 7vw;
+      display: flex;
+      align-items: center;
+      border: 1px double $black;
+      margin: 1vh 0;
+      border-radius: 5px;
+
+      &:hover {
+        border: 3px double $black;
+        transform: scale(1.1);
+      }
+
+      &-select-btn {
+        width: 30px;
+        height: 30px;
+        background-image: url(../assets/icons/SVG/tap.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        border: none;
+      }
+
+      .disabled {
+        color: gray;
+      }
+      .today {
+        background-color: $yellow;
+        border: none;
+      }
+
       &-day {
-        margin: 5px;
+        display: block;
+        margin: 0.5vw;
+        width: 6vw;
+        height: 6vw;
+        // border: 1px solid lightgray;
+        border-radius: 8px;
+        padding-top: 1vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        text-decoration: none;
+        color: $black;
+        background-color: $yellowish-white;
+
+        &:hover {
+          border: 2px solid $black;
+          transform: scale(1.1);
+        }
+
+        &-date {
+          &:first-child {
+            font-size: 12px;
+          }
+          &:last-child {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
       }
     }
   }
 
   &__picker {
+    width: 40vw;
     display: flex;
+
     &-month {
       width: 45%;
       margin-right: 10%;
@@ -23,6 +105,9 @@
     &-year {
       width: 45%;
       border: 1px solid $black;
+      border-radius: 5px;
+      padding-left: 10px;
+      font-size: 16px;
     }
   }
 }

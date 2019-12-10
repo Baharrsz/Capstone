@@ -1,9 +1,137 @@
 .weekcal {
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  width: 100vw;
+  min-height: 100vh;
+  padding: 3vw;
+  background-color: $grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__heading {
+  }
   &__days {
-    display: flex;
+    width: 94vw;
+    height: 80vh;
+    display: grid;
+    padding-top: 2vh;
+    column-gap: 2vw;
+    row-gap: 1vh;
+    grid-template-columns: repeat(3, 30vw);
+    grid-template-rows: 2fr 2fr 1fr;
   }
   &__day {
-    border: 1px solid $black;
-    margin: 10px;
+    width: 30vw;
+    height: 31.2vh;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    background-color: $yellowish-white;
+    text-decoration: none;
+    color: $black;
+    font-size: 10px;
+
+    &:last-child {
+      width: 94vw;
+      height: 15.6vh;
+
+      .planning__transferred-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .planning__transferred-list-item {
+          border-bottom: 1px dotted lightgray;
+          padding-left: 5px;
+
+          &:nth-child(odd) {
+            border-right: 1px dotted lightgray;
+          }
+        }
+      }
+    }
+
+    &-title {
+      width: 100%;
+      text-align: center;
+      padding: 5px;
+      background-color: $yellow;
+      border-radius: 8px 8px 0 0;
+      font-size: 14px;
+      position: sticky;
+      top: 0;
+    }
+
+    &-sections {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+    &-section {
+      overflow: auto;
+      height: 100%;
+      width: 34%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &:nth-child(2) {
+        border-left: 1px solid gray;
+        border-right: 1px solid gray;
+      }
+
+      &-title {
+        text-align: center;
+        background-color: $black;
+        color: $yellowish-white;
+        width: 100%;
+      }
+
+      &-body {
+        .planning__transferred-list {
+          padding: 5px;
+
+          &-item {
+            border: none;
+            font-size: 10px;
+            padding: 0;
+          }
+        }
+      }
+    }
+
+    &-Goals {
+      .planning__transferred-list-item {
+        display: block;
+        margin-top: 3px;
+      }
+    }
+
+    &-Schedule {
+      .planning__transferred-list-item {
+        margin-top: 3px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+          "item item item"
+          "starts ends duration";
+
+        &--item {
+          grid-area: item;
+        }
+        &--starts {
+          grid-area: starts;
+        }
+        &--ends {
+          grid-area: ends;
+        }
+        &--duration {
+          grid-area: duration;
+        }
+      }
+    }
   }
 }

@@ -25,7 +25,7 @@ export default class ShowAncestors extends Component {
             >
               {ancestorItems.map(ancestorItem => {
                 return (
-                  <div className="planning__transferred-list-item">
+                  <div className="planning__transferred-list-item" key={uuid()}>
                     {Object.keys(ancestorItem).map(key => {
                       return (
                         <div

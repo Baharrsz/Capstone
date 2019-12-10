@@ -8,7 +8,8 @@ import {
   isBefore,
   addDays,
   subDays,
-  isSameMonth
+  isSameMonth,
+  isSameDay
 } from "date-fns";
 import { Link } from "react-router-dom";
 import uuid from "uuid";
@@ -31,10 +32,15 @@ export default function WeekRows(props) {
           to={`${format(day, "y/M/d")}/plan`}
           className={`${props.className}-week-day ${
             isSameMonth(day, props.month) ? "enabled" : "disabled"
-          }`}
+          } ${isSameDay(day, new Date()) ? "today" : "notToday"}`}
           key={uuid()}
         >
-          {format(day, "E MMM d")}
+          <div className="monthcal__table-week-day-date">
+            {format(day, "eee")}
+          </div>
+          <div className="monthcal__table-week-day-date">
+            {format(day, "d")}
+          </div>
         </Link>
       );
       day = addDays(day, 1);
@@ -49,9 +55,9 @@ export default function WeekRows(props) {
               weekStartsOn: props.weekStartsOn
             }
           )}`}
-          className={`${props.className}-week-btn`}
+          className={`monthcal__table-week-select`}
         >
-          Select Week
+          <button className="monthcal__table-week-select-btn"></button>
         </Link>
         {row}
       </div>

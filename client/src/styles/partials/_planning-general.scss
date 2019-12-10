@@ -13,11 +13,16 @@
   justify-items: center;
   align-items: start;
   column-gap: 2vw;
+  row-gap: 2vh;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
     "heading heading heading"
     "events goals schedule ";
+
+  &__heading {
+    grid-area: heading;
+  }
 
   &__btn {
     width: 20px;
@@ -44,32 +49,7 @@
     }
 
     &--remove-focus {
-      background-image: url(../assets/icons/SVG/add.png);
-    }
-  }
-
-  &__heading {
-    grid-area: heading;
-    width: 90vw;
-    height: 10vh;
-    background-color: $yellowish-white;
-    border-radius: 5px;
-    margin: 15px;
-    display: flex;
-    justify-content: space-around;
-
-    &-date {
-    }
-
-    &-btn {
-      width: 5vw;
-      height: 5vw;
-      background-image: url(../assets/icons/SVG/save.png);
-      background-size: 5vw 5vw;
-      background-position: center;
-      border: none;
-
-      // margin-left: auto;
+      background-image: url(../assets/icons/SVG/hide.svg);
     }
   }
 
