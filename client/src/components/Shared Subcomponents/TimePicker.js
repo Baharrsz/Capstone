@@ -10,7 +10,7 @@ const selectStyles = {
   }),
   control: provided => ({
     ...provided,
-    width: 30,
+    width: "fitContent",
     height: 10,
     minHeight: 25,
     fontSize: 10
