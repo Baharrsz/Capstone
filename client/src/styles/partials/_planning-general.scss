@@ -2,10 +2,12 @@
   width: 100vw;
   min-height: 100vh;
   padding: 3vw;
+  overflow: auto;
 
   background-color: $grey;
   background-image: url(../assets/images/cac.jpg);
-  background-size: 170% 110%;
+  background-size: 145% 130%;
+  background-position: 0 20%;
 
   display: grid;
   justify-items: center;
