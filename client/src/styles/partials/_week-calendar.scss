@@ -7,12 +7,16 @@
   min-height: 100vh;
   padding: 3vw;
   background-color: $grey;
+  background-image: url(../assets/images/pattern.jpg);
+  background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   &__heading {
+    box-shadow: 5px 5px 5px gray;
   }
+
   &__days {
     width: 94vw;
     height: 80vh;
@@ -35,6 +39,7 @@
     text-decoration: none;
     color: $black;
     font-size: 10px;
+    box-shadow: 5px 5px 5px gray;
 
     &:last-child {
       width: 94vw;

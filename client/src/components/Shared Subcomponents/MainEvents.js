@@ -66,7 +66,11 @@ export default class MainEvents extends Component {
             <div
               className={`planning__main-event-item planning__main-event-item--buttons`}
             >
-              <button className="planning__main-event-btn planning__btn planning__btn--copy"></button>
+              <button
+                className="planning__main-event-btn planning__btn planning__btn--copy"
+                form={key}
+                onClick={this.props.copyToSchedule}
+              ></button>
               <button
                 className="planning__main-event-btn planning__btn planning__btn--delete"
                 type="button"

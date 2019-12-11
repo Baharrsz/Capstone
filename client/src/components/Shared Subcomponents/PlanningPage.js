@@ -77,6 +77,7 @@ export default class PlanningPage extends Component {
               mainEvents={this.state.main.events}
               deleteEvent={this.deleteEvent}
               addNewEvent={this.addNewEvent}
+              copyToSchedule={this.copyEventToSchedule}
             />
           }
           descendantsController={
@@ -103,6 +104,7 @@ export default class PlanningPage extends Component {
               deleteGoal={this.deleteGoal}
               addNewGoal={this.addNewGoal}
               changeFocus={this.changeFocus}
+              copyToSchedule={this.copyGoalToSchedule}
             />
           }
           descendantsController={
@@ -223,6 +225,64 @@ export default class PlanningPage extends Component {
   //     this.setState({ yearToShow: yearToShow });
   //   }, 5000);
   // };
+
+  //This will be called in MainSchedule to add new schedule items
+  copyEventToSchedule = clickCopy => {
+    clickCopy.preventDefault();
+
+    const itemId = "#";
+    let newItem = {};
+    newItem[itemId] = {
+      item: clickCopy.target.form.event.value,
+      starts: clickCopy.target.form.starts.value,
+      ends: clickCopy.target.form.ends.value,
+      duration: ""
+    };
+    this.setState({
+      main: {
+        ...this.state.main,
+        schedule: { ...this.state.main.schedule, ...newItem }
+      }
+    });
+  };
+
+  copyEventToSchedule = clickCopy => {
+    clickCopy.preventDefault();
+
+    const itemId = "#";
+    let newItem = {};
+    newItem[itemId] = {
+      item: clickCopy.target.form.event.value,
+      starts: clickCopy.target.form.starts.value,
+      ends: clickCopy.target.form.ends.value,
+      duration: ""
+    };
+    this.setState({
+      main: {
+        ...this.state.main,
+        schedule: { ...this.state.main.schedule, ...newItem }
+      }
+    });
+  };
+
+  copyGoalToSchedule = clickCopy => {
+    clickCopy.preventDefault();
+
+    const itemId = "#";
+    let newItem = {};
+    newItem[itemId] = {
+      item: clickCopy.target.form.goal.value,
+      starts: "",
+      ends: "",
+      duration: ""
+    };
+    this.setState({
+      main: {
+        ...this.state.main,
+        schedule: { ...this.state.main.schedule, ...newItem }
+      }
+    });
+  };
 
   //This will be called in MainEvents to delete events previosly added to the database
   deleteGoal = clickDelete => {

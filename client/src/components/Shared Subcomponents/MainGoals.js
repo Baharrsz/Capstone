@@ -17,6 +17,8 @@ export default class MainGoals extends Component {
             <input
               className="planning__main-goal-check"
               type="checkbox"
+              name="goal"
+              value={goal.goal}
               defaultChecked={goal.checked === "true"}
             ></input>
             {goal.goal}
@@ -34,7 +36,10 @@ export default class MainGoals extends Component {
             >
               {/* {goal.focus === "notFocus" ? "focus" : "Remove focus"} */}
             </button>
-            <button className="planning__main-goal-btn planning__btn planning__btn--copy"></button>
+            <button
+              className="planning__main-goal-btn planning__btn planning__btn--copy"
+              onClick={this.props.copyToSchedule}
+            ></button>
             <button
               className="planning__main-goal-btn planning__btn planning__btn--delete"
               type="button"

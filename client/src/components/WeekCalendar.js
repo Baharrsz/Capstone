@@ -13,7 +13,7 @@ export default class WeekCalendar extends Component {
     const weekToShow = this.state.weekToShow;
     return (
       <div className="weekcal">
-        <div className="weekcal-heading heading">
+        <div className="weekcal__heading heading">
           <Link
             to={`/${weekToShow[0]}/week/${weekToShow[1]}/plan`}
             className="weekcal__planLink planLink heading__mainBtn"
