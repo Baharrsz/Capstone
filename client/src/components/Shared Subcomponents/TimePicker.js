@@ -2,6 +2,30 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { parse, format } from "date-fns";
 
+const selectStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isSelected ? "orange" : "black",
+    fontSize: 10
+  }),
+  control: provided => ({
+    ...provided,
+    width: 30,
+    height: 10,
+    minHeight: 25,
+    fontSize: 10
+  }),
+  valueContainder: provided => ({
+    padding: 0,
+    margin: 0
+  }),
+  input: provided => ({
+    // ...provided,
+    padding: 0,
+    textAlign: "center"
+  })
+};
+
 //props to this component:
 //className, if month/week/day, if duration
 export default class TimePicker extends Component {
@@ -66,11 +90,17 @@ export default class TimePicker extends Component {
                 ? "weekday"
                 : "dayOrWeek"
             }
+            defaultValue={type === "day" ? "12" : type === "week" ? 1 : -4}
+            styles={selectStyles}
+            captureMenuScroll={true}
+            maxMenuHeight={150}
+            menuPlacement="auto"
             onChange={this.setTime}
             components={{
               DropdownIndicator: () => null,
               IndicatorSeparator: () => null,
-              Placeholder: () => "-"
+              Placeholder: () =>
+                type === "day" ? "12" : type === "week" ? "Monday" : "Week 1"
             }}
           />
           {!(type === "day") ? (
@@ -84,10 +114,12 @@ export default class TimePicker extends Component {
                 options={minutes}
                 name="minute"
                 onChange={this.setTime}
+                defaultValue={0}
+                styles={selectStyles}
                 components={{
                   DropdownIndicator: () => null,
                   IndicatorSeparator: () => null,
-                  Placeholder: () => "--"
+                  Placeholder: () => "00"
                 }}
               />
               <Select
@@ -96,6 +128,8 @@ export default class TimePicker extends Component {
                 options={ampm}
                 name="ampm"
                 onChange={this.setTime}
+                defaultValue={"a.m."}
+                styles={selectStyles}
                 components={{
                   DropdownIndicator: () => null,
                   IndicatorSeparator: () => null,

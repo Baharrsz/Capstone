@@ -71,17 +71,17 @@ export default class MainSchedule extends Component {
         </div>
 
         <form
-          className="planning__main-scheduleRow planning__main-scheduleRow--new"
+          className="planning__main-scheduleRow--new"
           onSubmit={this.props.addNewScheduleItem}
         >
           <input
-            className="planning__main-scheduleRow-input planning__main-scheduleRow-order"
+            className="planning__main-scheduleRow--new-order"
             name="order"
             disabled
             value={length + 1}
           />
 
-          <div className="planning__main-scheduleRow-input planning__main-scheduleRow-item">
+          <div className="planning__main-scheduleRow--new-item">
             <label className="planning__main-schedule-label">item</label>
             <input
               className="planning__main-schedule-value"
@@ -91,7 +91,7 @@ export default class MainSchedule extends Component {
           </div>
 
           <TimeAndDuration
-            className="planning__main-scheduleRow-timeInfo"
+            className="planning__main-scheduleRow--new-timeInfo"
             sendTimeAndDuration={this.sendTimeAndDuration}
             getDurationInput={this.getDurationInput}
             name="timeInfo"
@@ -101,7 +101,7 @@ export default class MainSchedule extends Component {
           />
           {/* <TimePicker /> */}
 
-          <button className="planning__main-scheduleRow-btn planning__btn planning__btn--add"></button>
+          <button className="planning__main-scheduleRow--new-btn planning__btn planning__btn--add"></button>
         </form>
       </div>
     );

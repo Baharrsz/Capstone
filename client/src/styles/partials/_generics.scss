@@ -72,25 +72,10 @@
   }
   &__select {
     display: flex;
-
-    &-hour {
-      flex-grow: 1;
+    justify-content: center;
+    &-ampm {
+      margin-left: 10px;
     }
-    &-minute {
-      flex-grow: 1;
-    }
-    &_ampm {
-      flex-grow: 1;
-    }
-  }
-
-  &__control {
-    height: 20px;
-  }
-
-  &__input {
-    line-height: 24px;
-    height: 24px;
   }
 }
 

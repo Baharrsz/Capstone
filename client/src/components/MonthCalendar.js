@@ -18,9 +18,9 @@ export default class MonthCalendar extends Component {
         <div className="heading">
           <Link
             to={`${this.state.yearToShow}/${this.state.monthToShow + 1}/plan`}
-            className="monthcal__planLink planLink  heading__mainBtn"
+            className="monthcal__planLink planLink  heading__mainBtn planBtn"
           >
-            <button className="monthcal__btn planBtn"></button>
+            <button className="monthcal__btn "></button>
           </Link>
 
           <div className="monthcal__header placard">
