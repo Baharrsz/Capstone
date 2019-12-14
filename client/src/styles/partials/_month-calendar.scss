@@ -12,7 +12,8 @@
   background-color: $grey;
   background-image: url(../assets/images/clock.jpg);
   background-size: 105vw 105vh;
-  background-position: 0 10%;
+  background-position: 0 0;
+  background-attachment: fixed;
 
   &__table {
     height: 70vh;
@@ -36,6 +37,7 @@
       height: 9vh;
       display: flex;
       align-items: center;
+      transition: all 0.5s, ease-out, linear 0.5s;
 
       &:hover {
         transform: scale(1.1);
@@ -71,6 +73,7 @@
         text-decoration: none;
         color: $grey;
         background-color: $yellowish-white;
+        transition: all 0.2s, ease, linear 0.2s;
 
         &:hover {
           transform: scale(1.1);

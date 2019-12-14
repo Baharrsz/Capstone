@@ -26,49 +26,52 @@ export default class ShowDescendantGoals extends Component {
                 }`}
               >
                 {descendantArray.map(descendant => {
-                  const descendantGoals = Object.values(descendant.goals);
-                  return (
-                    <div
-                      className="planning__transferred__collection-item"
-                      key={uuid()}
-                    >
-                      <button
-                        className="planning__transferred__collection-title"
-                        onClick={click => this.showOrHide(click, descendant.id)}
-                      >
-                        {descendant.id}
-                      </button>
+                  if (!descendant.goals) return <></>;
+                  else {
+                    const descendantGoals = Object.values(descendant.goals);
+                    return (
                       <div
-                        className={`planning__transferred-list ${
-                          this.state[`show_${descendant.id}`] ? "show" : "hide"
-                        }`}
+                        className="planning__transferred__collection-item"
+                        key={uuid()}
                       >
-                        {descendantGoals.map(descendantGoal => {
-                          return (
-                            <div
-                              className="planning__transferred-list-item"
-                              key={uuid()}
-                            >
-                              <div className="planning__transferred-list-item--label">
-                                <input
-                                  className="planning__transferred-list-item--check"
-                                  type="checkbox"
-                                  checked={descendantGoal.checked === "true"}
-                                ></input>
-                                {descendantGoal.goal}
+                        <button
+                          className="planning__transferred__collection-title"
+                          onClick={click =>
+                            this.showOrHide(click, descendant.id)
+                          }
+                        >
+                          {descendant.id}
+                        </button>
+                        <div
+                          className={`planning__transferred-list ${
+                            this.state[`show_${descendant.id}`]
+                              ? "show"
+                              : "hide"
+                          }`}
+                        >
+                          {descendantGoals.map(descendantGoal => {
+                            return (
+                              <div
+                                className="planning__transferred-list-item"
+                                key={uuid()}
+                              >
+                                <div className="planning__transferred-list-item--label">
+                                  <input
+                                    className="planning__transferred-list-item--check"
+                                    type="checkbox"
+                                    defaultChecked={
+                                      descendantGoal.checked === "true"
+                                    }
+                                  ></input>
+                                  {descendantGoal.goal}
+                                </div>
                               </div>
-                            </div>
-                            // <div
-                            //   className="planning__transferred-list-item-value"
-                            //   key={uuid()}
-                            // >
-                            //   {descendantGoal.goal}
-                            // </div>
-                          );
-                        })}
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  );
+                    );
+                  }
                 })}
               </div>
             </div>

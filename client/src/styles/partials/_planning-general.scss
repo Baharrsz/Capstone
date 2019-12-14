@@ -6,8 +6,10 @@
 
   background-color: $grey;
   background-image: url(../assets/images/cac.jpg);
-  background-size: 145% 130%;
-  background-position: 0 20%;
+  background-size: 145vw 130vh;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   display: grid;
   justify-items: center;

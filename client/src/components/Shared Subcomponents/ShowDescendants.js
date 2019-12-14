@@ -26,51 +26,58 @@ export default class ShowDescendants extends Component {
                 }`}
               >
                 {descendantArray.map(descendant => {
-                  const descendantItems = Object.values(descendant[section]);
-                  return (
-                    <div
-                      className="planning__transferred__collection-item"
-                      key={uuid()}
-                    >
-                      <button
-                        className="planning__transferred__collection-title"
-                        onClick={click => this.showOrHide(click, descendant.id)}
-                      >
-                        {descendant.id}
-                      </button>
+                  if (!descendant[section]) return <></>;
+                  else {
+                    const descendantItems = Object.values(descendant[section]);
+                    return (
                       <div
-                        className={`planning__transferred-list ${
-                          this.state[`show_${descendant.id}`] ? "show" : "hide"
-                        }`}
+                        className="planning__transferred__collection-item"
+                        key={uuid()}
                       >
-                        {descendantItems.map(descendantItem => {
-                          return (
-                            <div
-                              className="planning__transferred-list-item"
-                              key={uuid()}
-                            >
-                              {Object.keys(descendantItem).map(key => {
-                                return (
-                                  <div
-                                    className={`planning__transferred-list-item-key planning__transferred-list-item--${key}`}
-                                    key={uuid()}
-                                  >
-                                    <label className="planning__transferred-list-item-label">
-                                      {key}
-                                    </label>
+                        <button
+                          className="planning__transferred__collection-title"
+                          onClick={click =>
+                            this.showOrHide(click, descendant.id)
+                          }
+                        >
+                          {descendant.id}
+                        </button>
+                        <div
+                          className={`planning__transferred-list ${
+                            this.state[`show_${descendant.id}`]
+                              ? "show"
+                              : "hide"
+                          }`}
+                        >
+                          {descendantItems.map(descendantItem => {
+                            return (
+                              <div
+                                className="planning__transferred-list-item"
+                                key={uuid()}
+                              >
+                                {Object.keys(descendantItem).map(key => {
+                                  return (
+                                    <div
+                                      className={`planning__transferred-list-item-key planning__transferred-list-item--${key}`}
+                                      key={uuid()}
+                                    >
+                                      <label className="planning__transferred-list-item-label">
+                                        {key}
+                                      </label>
 
-                                    <div className="planning__transferred-list-item-value">
-                                      {descendantItem[key]}
+                                      <div className="planning__transferred-list-item-value">
+                                        {descendantItem[key]}
+                                      </div>
                                     </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          );
-                        })}
+                                  );
+                                })}
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  );
+                    );
+                  }
                 })}
               </div>
             </div>

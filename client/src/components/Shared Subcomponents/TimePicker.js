@@ -11,8 +11,8 @@ const selectStyles = {
   control: provided => ({
     ...provided,
     width: "fitContent",
-    height: 10,
     minHeight: 25,
+    height: 25,
     fontSize: 10
   }),
   valueContainder: provided => ({
@@ -90,7 +90,8 @@ export default class TimePicker extends Component {
                 ? "weekday"
                 : "dayOrWeek"
             }
-            defaultValue={type === "day" ? "12" : type === "week" ? 1 : -4}
+            // defaultInputValue={type === "day" ? 12 : type === "week" ? 1 : -4}
+            required
             styles={selectStyles}
             captureMenuScroll={true}
             maxMenuHeight={150}
@@ -99,8 +100,8 @@ export default class TimePicker extends Component {
             components={{
               DropdownIndicator: () => null,
               IndicatorSeparator: () => null,
-              Placeholder: () =>
-                type === "day" ? "12" : type === "week" ? "Monday" : "Week 1"
+              Placeholder: () => "-"
+              //     type === "day" ? "12" : type === "week" ? "Monday" : "Week 1"
             }}
           />
           {!(type === "day") ? (
@@ -114,12 +115,13 @@ export default class TimePicker extends Component {
                 options={minutes}
                 name="minute"
                 onChange={this.setTime}
-                defaultValue={0}
+                // defaultInputValue={0}
+                required
                 styles={selectStyles}
                 components={{
                   DropdownIndicator: () => null,
                   IndicatorSeparator: () => null,
-                  Placeholder: () => "00"
+                  Placeholder: () => "--"
                 }}
               />
               <Select
@@ -128,12 +130,13 @@ export default class TimePicker extends Component {
                 options={ampm}
                 name="ampm"
                 onChange={this.setTime}
-                defaultValue={"a.m."}
+                // defaultInputValue={"a.m."}
+                required
                 styles={selectStyles}
                 components={{
                   DropdownIndicator: () => null,
                   IndicatorSeparator: () => null,
-                  Placeholder: () => "a.m."
+                  Placeholder: () => "-"
                 }}
               />
             </>

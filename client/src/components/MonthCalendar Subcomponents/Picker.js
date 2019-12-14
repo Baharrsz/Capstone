@@ -15,6 +15,7 @@ export default function Picker(props) {
       <Select
         className={`${props.className}-month`}
         classNamePrefix={`${props.className}-month`}
+        maxMenuHeight={120}
         options={options}
         onChange={props.pickMonth}
       />

@@ -171,6 +171,9 @@ export default class PlanningPage extends Component {
   //This will send the information that is displayed on the page to the server after clicking the "Save" button
   sendToDatabase = saveEvent => {
     axios.post(this.url, this.state.main);
+
+    //Checking the ancestor time units and creating them if they don't exist (e.g. a week for a day)
+    // if (this.url.indexOf("week")>0) ...
   };
 
   //This will be called in MainEvents to delete events previosly added to the database
